@@ -1,0 +1,50 @@
+metadata
+    Title : Data Flow Subsystem Class Model
+    Author : Leon Starr
+    Document ID : mint.dataflow.td.1
+    Version : 0.1.0
+    /// Creation date : January 8, 2022
+    Modification date : January 9, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Data Flow
+class Graph
+attributes
+    ID : Graph ID {I}
+--
+class Port Specification
+attributes
+    Name : Port Name {I}
+    Process Spec {I, R3}
+--
+class Process Specification
+attributes
+    Name : Spec Name {I}
+--
+class Flow Specification
+attributes
+    Name : Spec Name {I}
+--
+class Process
+attributes
+    ID : Process ID {I}
+    Graph {I, R1}
+    Spec {R4}
+--
+class Flow
+attributes
+    ID : Flow ID {I}
+    Graph {I, R2}
+    Spec {R5}
+--
+relationships
+    R1
+    is defined on, 1 Graph
+    defines, M Process
+--
+    R9
+    Port +
+        Input Port
+        Output Port
+--

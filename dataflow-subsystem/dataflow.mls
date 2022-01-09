@@ -1,0 +1,15 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color peach
+sheet D
+padding l300 b350
+frame OS Engineer
+frame_presentation default
+nodes
+    Process Specification 10,5
+    Flow Specification 8,5
+connectors
+    +R1 : +/1 r|Graph : -/2 l*|Process
+    +R9 : r|Port { l|Input Port, l|Output Port }
