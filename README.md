@@ -3,8 +3,9 @@ Here we model the semantics and execution rules of simple data flow diagrams.
 
 Remember data flow diagrams from the '80s? That's okay, not many people do.
 If you are familiar with UML activity diagrams these are a weird fusion of flowcharts from the 60-70's and data flow diagrams from the 70-80's.
+Not familiar with those either? Yeah, nobody much cares about those either, yawn...
 
-But data flow diagrams on their own are simple and powerful.
+**BUT** data flow diagrams on their own are simple and powerful.
 
 We use them for Executable UML model actions such as: filter instances, compute value, test value/if-then, send signal, traverse relationship, invoke class method, and so forth. By separating out this domain, however, you could configure your data flow graphs for any kinds of actions.
 
