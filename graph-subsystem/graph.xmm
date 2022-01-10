@@ -9,74 +9,139 @@ metadata
     Copyright notice > MIT
     Organization logo > mint
 subsystem Graph
+class Graph Specification <import:Specification>
+attributes
+    Name {I}
+--
 class Graph
 attributes
     ID : Graph ID {I}
+    Graph spec {R25}
+--
+class Graph Input
+attributes
+    Graph {I, I2, R32, R33}
+    Graph Interface {I,R32}
+    Graph Spec {I, R32}
+    Socket {I2, R33}
+--
+class Graph Interface <import:Specification>
+attributes
+    Name {I}
+    Graph spec {I}
+--
+class Graph Output
+attributes
+    Graph {I, I2, R32, R34}
+    Graph Interface {I, R32}
+    Graph Spec {I, R32}
+    Flow {I2, R34}
+--
+class Graph Port
+attributes
+    Graph {I,R31}
+    Graph Interface {I,R31}
+    Graph Spec {I, R31}
 --
 class Process
 attributes
     ID : Process ID {I}
-    Graph {I, R1}
-    Definition {R4}
+    Process Spec {I, R28}
+    Graph {I, R26}
 --
-class Port
+class Process Interface <import:Specification>
 attributes
-    Process {I,R5}
-    Graph {I,R5}
-    Interface {I,R5}
+    Name {I}
+    Process spec {I}
 --
-class Input Port
+class Process Port
 attributes
-    Process {I,R6}
-    Graph {I,R6}
-    Interface {I,R6}
+    Process {I,R29}
+    Process Spec {I, R29}
+    Graph {I,R29}
+    Process Interface {I,R29}
 --
-class Output Port
+class Process Input
 attributes
-    Process {I,R6}
-    Graph {I,R6}
-    Interface {I,R6}
+    Process {I,R30}
+    Process Spec {I, R30}
+    Graph {I, I2, R30, R33}
+    Process Interface {I,R30}
+    Socket {I2, R33}
 --
-///class Connection
-///attributes
-///    Output {R7}
-///    From input {I, R7}
-///    From process {I, R7}
-///    Graph {I, R7}
-///--
-class Process Definition <import:Specification>
+class Process Output
 attributes
-    Name : Definition Name {I}
+    Process {I, R30}
+    Process Spec {I, R30}
+    Graph {I, I2, R30, R34}
+    Process Interface {I, R30}
+    Flow {I2, R34}
+--
+class Process Specification <import:Specification>
+attributes
+    Name {I}
+--
+class Socket
+attributes
+    ID : Socket ID {I}
+    Graph : Graph Name {I}
+--
+class Flow
+attributes
+    ID : Flow ID {I}
+    Graph : Graph Name {I}
+--
+class Connection
+attributes
+    Socket {I, R27}
+    Flow {R27}
+    Graph {I, R27}
 --
 relationships
-    R1
-    is defined on, 1 Graph
-    defines, M Process
+    R25
+    defines, Mc Graph
+    is defined by, 1 Graph Specification
 --
-    R3
-    specifies communication through, M Interface
-    is specified for communication by, 1 Process Definition
+    R26
+    executes in, 1 Graph
+    executes, M Process
 --
-    R4
+    R27
+    provides input to, Mc Socket
+    gets input from, 1c Flow
+    1 Connection
+--
+    R28
     defines, Mc Process
-    is defined by, 1 Process Definition
+    is defined by, 1 Process Specification
 --
-    R5
-    provides, M Interface
+    R29
+    provides, M Process Interface
     is provided by, Mc Process
-    1 Port
+    1 Process Port
 --
-    R6
-    Port +
-        Input Port
-        Output Port
+    R30
+    Process Port +
+        Process Input
+        Process Output
 --
-///    R7
-///    outputs to, Mc Output Port
-///    gets input from, 1c Input Port
-///    1 Connection
-///--
-    R8
-    accepts, 1 Flow Type
-    is accepted at, Mc Interface
+    R31
+    provides, M Graph Interface
+    is provided by, Mc Graph
+    1 Graph Port
+--
+    R32
+    Graph Port +
+        Graph Input
+        Graph Output
+--
+    R33
+    Socket +
+        Graph Input
+        Process Input
+--
+    R34
+    Source +
+        Graph Output
+        Process Output
 --

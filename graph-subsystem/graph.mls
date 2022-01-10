@@ -8,20 +8,29 @@ padding l300 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Graph 12,5-6
-    Process Definition 10,3
-    Interface 8,3
-    //Content 6,3
-    Process 10,5-6
-    Port 9,6-7
-    Input Port 10,8
-    Output Port 8,8
-    Connection 9,10
+    Process Specification 4,2
+    Process 4,4
+    Graph 6,4
+    Graph Specification 6,2
+    Graph Interface 9,4
+    Graph Port 7-8,5
+    Process Interface 1,4
+    Process Port 2-3,5
+    Graph Input 8-9,6-7
+    Graph Output 6-7,6-7
+    Process Input 3-4,6-7
+    Process Output 1-2,6-7
+    Socket 7-8,8-9
+    Flow 5,8-9
+    Connection 6-7,10
 connectors
-    -R1 : +/1 b|Graph : +/2 t*|Process
-    +R3 : -/1 b|Process Definition : -/1 t*|Interface
-    -R4 : +/1 r|Process Definition : +/1 l*|Process
-    -R5 : -/1 r|Interface : -/1 b|Process, l|Port
-    +R6 : r|Port { l|Input Port, l|Output Port }
-//    -R7.2 : +/1 r|Input Port : -/1 r|Output Port, l|Connection : L9
-    +R8 : -/1 b|Interface : -/1 t*|Content
+    -R25 : +/1 r|Graph Specification : +/1 l*|Graph
+    -R26 : +/1 b|Graph : +/1 t*|Process
+    -R27 : +/1 b|Socket : +/1 t*|Flow, l|Connection
+    -R28 : +/1 r|Process Specification : +/1 l*|Process
+    -R29 : +/1 b|Process : +/1 t*|Process Interface, l|Process Port
+    +R30 : r|Process Port { l|Process Input, l|Process Output }
+    -R31 : +/1 t|Graph : +/1 b*|Graph Interface, l|Graph Port
+    +R32 : r|Graph Port { l|Graph Input, l|Graph Output }
+    +R33 : l|Socket { r|Graph Input, r|Process Input  : L7R+1 }
+    +R34 : l|Flow { r|Graph Output, r|Process Output }
