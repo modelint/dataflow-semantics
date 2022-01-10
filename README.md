@@ -1,5 +1,6 @@
-# dataflow-semantics
-Here we model the semantics and execution rules of simple data flow diagrams.
+# Welcome to the Data Flow Semantics 
+
+Here we model the semantics and execution rules of simple data flow diagrams using Shlaer-Mellor Executable UML
 
 Remember data flow diagrams from the '80s? That's okay, not many people do.
 If you are familiar with UML activity diagrams these are a weird fusion of flowcharts from the 60-70's and data flow diagrams from the 70-80's.
