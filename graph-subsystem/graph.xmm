@@ -1,21 +1,17 @@
 metadata
-    Title : Data Flow Subsystem Class Model
+    Title : Graph Subsystem Class Model
     Author : Leon Starr
-    Document ID : mint.dataflow.td.1
-    Version : 0.1.0
+    Document ID : mint.dataflow.td.2
+    Version : 0.2.0
     /// Creation date : January 8, 2022
-    Modification date : January 9, 2022
+    Modification date : January 10, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Data Flow
+subsystem Graph
 class Graph
 attributes
     ID : Graph ID {I}
---
-class Graph Port
-attributes
-    Name :
 --
 class Process
 attributes
@@ -48,21 +44,9 @@ attributes
 ///    From process {I, R7}
 ///    Graph {I, R7}
 ///--
-class Process Definition
+class Process Definition <import:Specification>
 attributes
     Name : Definition Name {I}
---
-class Interface
-attributes
-    Name : Interface Name {I}
-    Direction : Input Output
-    Process definition {I, R3}
-    Required : Boolean
-    Content {R8}
---
-class Content
-attributes
-    Name : Content Name {I}
 --
 relationships
     R1
