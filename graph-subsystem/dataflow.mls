@@ -8,20 +8,20 @@ padding l300 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Graph 12,6-7
-    Process Definition 10,4
-    Interface 8,4
-    Content 6,4
-    Process 10,6-7
-    Port 9,7-8
-    Input Port 10,9
-    Output Port 8,9
-    Connection 9,11
+    Graph 12,5-6
+    Process Definition 10,3
+    Interface 8,3
+    //Content 6,3
+    Process 10,5-6
+    Port 9,6-7
+    Input Port 10,8
+    Output Port 8,8
+    Connection 9,10
 connectors
     -R1 : +/1 b|Graph : +/2 t*|Process
     +R3 : -/1 b|Process Definition : -/1 t*|Interface
     -R4 : +/1 r|Process Definition : +/1 l*|Process
     -R5 : -/1 r|Interface : -/1 b|Process, l|Port
     +R6 : r|Port { l|Input Port, l|Output Port }
-    -R7.2 : +/1 r|Input Port : -/1 r|Output Port, l|Connection : L10
+//    -R7.2 : +/1 r|Input Port : -/1 r|Output Port, l|Connection : L9
     +R8 : -/1 b|Interface : -/1 t*|Content

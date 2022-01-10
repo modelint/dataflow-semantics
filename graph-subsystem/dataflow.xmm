@@ -13,6 +13,10 @@ class Graph
 attributes
     ID : Graph ID {I}
 --
+class Graph Port
+attributes
+    Name :
+--
 class Process
 attributes
     ID : Process ID {I}
@@ -37,13 +41,13 @@ attributes
     Graph {I,R6}
     Interface {I,R6}
 --
-class Connection
-attributes
-    Output {R7}
-    From input {I, R7}
-    From process {I, R7}
-    Graph {I, R7}
---
+///class Connection
+///attributes
+///    Output {R7}
+///    From input {I, R7}
+///    From process {I, R7}
+///    Graph {I, R7}
+///--
 class Process Definition
 attributes
     Name : Definition Name {I}
@@ -83,11 +87,11 @@ relationships
         Input Port
         Output Port
 --
-    R7
-    outputs to, Mc Output Port
-    gets input from, 1c Input Port
-    1 Connection
---
+///    R7
+///    outputs to, Mc Output Port
+///    gets input from, 1c Input Port
+///    1 Connection
+///--
     R8
     accepts, 1 Flow Type
     is accepted at, Mc Interface

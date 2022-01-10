@@ -1,0 +1,23 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color peach
+sheet C
+padding l300 b350
+frame OS Engineer
+frame_presentation default
+nodes
+    Graph Specification 5,3-4
+    Process Specification 3,3-4
+    Compatible Process 4,2
+    Graph Interface 5,6
+    Process Interface 3,6
+    Interface 4,7-8
+    Content 4,10
+connectors
+    +R1 : +/2 b|Graph Specification : +/1 t*|Process Specification, r|Compatible Process
+    -R2 : +/1 r|Graph Specification : +/1 l*|Graph Interface
+    +R3 : -/1 r|Process Specification : -/1 l*|Process Interface
+    +R4 : l|Interface { r|Process Interface, r|Graph Interface }
+    +R5 : -/2 r|Interface : -/1 l*|Content
