@@ -18,6 +18,6 @@ This work was motivated by the sm-metamodel work. In the process of building the
 
 There's no code in this repository. The models are all Shlaer-Mellor Executable UML. We use the Flatland tool to draw our models.
 
-Everything else is in the wiki.
+Everything else is in the [wiki](https://github.com/modelint/dataflow-semantics/wiki).
 
 There is also a discussion group if you have questions or comments.
