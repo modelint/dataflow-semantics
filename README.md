@@ -20,4 +20,4 @@ There's no code in this repository. The models are all Shlaer-Mellor Executable 
 
 Everything else is in the [wiki](https://github.com/modelint/dataflow-semantics/wiki).
 
-There is also a discussion group if you have questions or comments.
+There is also a [discussion group](https://github.com/modelint/dataflow-semantics/discussions) if you have questions or comments.
