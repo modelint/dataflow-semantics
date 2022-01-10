@@ -17,7 +17,7 @@ We don't tell the programmer (or model compiler) to execute actions in any parti
 
 This work was motivated by the sm-metamodel work. In the process of building the Shlaer-Mellor metamodel it became obvious that data flow diagrams and the related semantics were an entirely separate subject subject matter. Therefore, it is it's own distinct model domain.
 
-There's no code in this repository. The models are all Shlaer-Mellor Executable UML. We use the Flatland tool to draw our models.
+There's no code in this repository. The models are all Shlaer-Mellor Executable UML. We use the [Flatland](https://github.com/modelint/flatland-model-diagram-editor/wiki) diagram generator to draw our models.
 
 Everything else is in the [wiki](https://github.com/modelint/dataflow-semantics/wiki).
 
