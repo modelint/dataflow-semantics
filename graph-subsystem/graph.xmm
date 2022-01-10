@@ -9,6 +9,17 @@ metadata
     Copyright notice > MIT
     Organization logo > mint
 subsystem Graph
+class Connection
+attributes
+    Socket {I, R27}
+    Flow {R27}
+    Graph {I, R27}
+--
+class Flow
+attributes
+    ID : Flow ID {I}
+    Graph : Graph Name {I}
+--
 class Graph Specification <import:Specification>
 attributes
     Name {I}
@@ -85,17 +96,6 @@ class Socket
 attributes
     ID : Socket ID {I}
     Graph : Graph Name {I}
---
-class Flow
-attributes
-    ID : Flow ID {I}
-    Graph : Graph Name {I}
---
-class Connection
-attributes
-    Socket {I, R27}
-    Flow {R27}
-    Graph {I, R27}
 --
 relationships
     R25
