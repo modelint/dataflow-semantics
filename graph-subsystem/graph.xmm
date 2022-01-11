@@ -56,10 +56,9 @@ attributes
 --
 class Process
 attributes
-    ID : Process ID {I}
-    Name : Process Name {I2}
-    Graph {I, I2, R26}
-    Process Spec {R28}
+    Name : Process Name {I}
+    Graph {I, R28}
+    Process Spec {I, R28}
 --
 class Process Interface <import:Specification>
 attributes
@@ -103,18 +102,15 @@ relationships
     defines, Mc Graph
     is defined by, 1 Graph Specification
 --
-    R26
-    executes in, 1 Graph
-    executes, M Process
---
     R27
     provides input to, Mc Socket
     gets input from, 1c Flow
     1 Connection
 --
     R28
-    defines, Mc Process
-    is defined by, 1 Process Specification
+    executes in, Mc Graph
+    executes, M Process Specification
+    M Process
 --
     R29
     provides, M Process Interface

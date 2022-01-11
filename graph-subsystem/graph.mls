@@ -4,30 +4,29 @@ presentation default
 orientation landscape
 color pink eraser
 sheet C
-padding l300 b350
+padding l200 b200
 frame OS Engineer
 frame_presentation default
 nodes
-    Process Specification 4,2
-    Process 4,4
-    Graph 6,4
-    Graph Specification 6,2
-    Graph Interface 9,4
-    Graph Port 7-8,5
-    Process Interface 1,4
-    Process Port 2-3,5
-    Graph Input 8-9,6-7
-    Graph Output 6-7,6-7
-    Process Input 3-4,6-7
-    Process Output 1-2,6-7
-    Socket 7-8,8-9
-    Flow 5,8-9
-    Connection 6-7,10
+    Process Specification 6-7,2
+    Process 5-6,3-4
+    Graph 8,4
+    Graph Specification 8,2
+    Graph Interface 11,4
+    Graph Port 9-10,5
+    Process Interface 2-3,3-4
+    Process Port 4,5
+    Graph Input 10-11,6-7
+    Graph Output 8-9,6-7
+    Process Input 5,6-7
+    Process Output 3,6-7
+    Socket 9-10,8-9
+    Flow 7,8-9
+    Connection 8-9,10
 connectors
     -R25 : +/1 r|Graph Specification : +/1 l*|Graph
-    -R26 : +/1 b|Graph : +/1 t*|Process
     -R27 : +/1 b|Socket : +/1 t*|Flow, l|Connection
-    -R28 : +/1 r|Process Specification : +/1 l*|Process
+    -R28.2 : +/1 r|Process Specification : +/1 b|Graph, t|Process
     -R29 : +/1 b|Process : +/1 t*|Process Interface, l|Process Port
     +R30 : r|Process Port { l|Process Input, l|Process Output }
     -R31 : +/1 t|Graph : +/1 b*|Graph Interface, l|Graph Port
