@@ -2,7 +2,7 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.2.3
+    Version : 0.2.4
     /// Creation date : January 8, 2022
     Modification date : January 11, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -32,8 +32,8 @@ attributes
 class Graph Input Port
 attributes
     Graph {I, I2, R32, R33}
-    Graph Interface {I,R32}
-    Graph Spec {I, R32}
+    Graph interface {I,R32}
+    Graph spec {I, R32}
     Socket {I2, R33}
 --
 class Graph Interface <import:Specification>
@@ -44,21 +44,21 @@ attributes
 class Graph Output Port
 attributes
     Graph {I, I2, R32, R34}
-    Graph Interface {I, R32}
-    Graph Spec {I, R32}
+    Graph interface {I, R32}
+    Graph spec {I, R32}
     Flow {I2, R34}
 --
 class Graph Port
 attributes
     Graph {I,R31}
-    Graph Interface {I,R31}
+    Graph interface {I,R31}
     Graph Spec {I, R31}
 --
 class Process
 attributes
     Name : Process Name {I}
     Graph {I, R28}
-    Process Spec {I, R28}
+    Process spec {I, R28}
 --
 class Process Interface <import:Specification>
 attributes
@@ -69,26 +69,26 @@ class Process Port
 attributes
     Name : Port Name {I}
     Process {I,R29}
-    Process Spec {I, R29}
+    Process spec {I, R29}
     Graph {I,R29}
-    Process Interface {I,R29}
+    Process interface {I,R29}
 --
 class Process Input Port
 attributes
     Port name {I,R30}
     Process {I,R30}
-    Process Spec {I, R30}
+    Process spec {I, R30}
     Graph {I, I2, R30, R33}
-    Process Interface {I,R30}
+    Process interface {I,R30}
     Socket {I2, R33}
 --
 class Process Output Port
 attributes
     Port name {I,R30}
     Process {I, R30}
-    Process Spec {I, R30}
+    Process spec {I, R30}
     Graph {I, I2, R30, R34}
-    Process Interface {I, R30}
+    Process interface {I, R30}
     Flow {I2, R34}
 --
 class Process Specification <import:Specification>
