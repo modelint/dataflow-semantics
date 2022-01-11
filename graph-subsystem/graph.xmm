@@ -2,7 +2,7 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.2.4
+    Version : 0.2.5
     /// Creation date : January 8, 2022
     Modification date : January 11, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -18,7 +18,7 @@ attributes
 class Flow
 attributes
     ID : Flow ID {I}
-    Graph : Graph Name {I}
+    Graph {I, UR34}
 --
 class Graph Specification <import:Specification>
 attributes
@@ -52,7 +52,7 @@ class Graph Port
 attributes
     Graph {I,R31}
     Graph interface {I,R31}
-    Graph Spec {I, R31}
+    Graph spec {I, R31}
 --
 class Process
 attributes
@@ -98,7 +98,7 @@ attributes
 class Socket
 attributes
     ID : Socket ID {I}
-    Graph : Graph Name {I}
+    Graph {I, UR33}
 --
 relationships
     R25
