@@ -2,7 +2,7 @@ metadata
     Title : Specification Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.1
-    Version : 0.2.3
+    Version : 0.2.5
     /// Creation date : January 8, 2022
     Modification date : January 10, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -32,7 +32,7 @@ class Interface
 attributes
     Name : Interface Name {I}
     Level : Process Graph {I}
-    Spec : Spec Name {I}
+    Spec {I, UR4}
     Direction : Input Output
     Content {R8}
 --
@@ -67,5 +67,5 @@ relationships
 --
     R5
     conveys, 1 Content
-    is conveyed through, Mc Interface
+    is conveyed through, M Interface
 --
