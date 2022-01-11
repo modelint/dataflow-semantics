@@ -16,10 +16,10 @@ nodes
     Graph Port 9-10,5
     Process Interface 2-3,3-4
     Process Port 4,5
-    Graph Input 10-11,6-7
-    Graph Output 8-9,6-7
-    Process Input 5,6-7
-    Process Output 3,6-7
+    Graph Input Port 10-11,6-7
+    Graph Output Port 8-9,6-7
+    Process Input Port 5,6-7
+    Process Output Port 3,6-7
     Socket 9-10,8-9
     Flow 7,8-9
     Connection 8-9,10
@@ -28,8 +28,8 @@ connectors
     -R27 : +/1 b|Socket : +/1 t*|Flow, l|Connection
     -R28.2 : +/1 r|Process Specification : +/1 b|Graph, t|Process
     -R29 : +/1 b|Process : +/1 t*|Process Interface, l|Process Port
-    +R30 : r|Process Port { l|Process Input, l|Process Output }
+    +R30 : r|Process Port { l|Process Input Port, l|Process Output Port }
     -R31 : +/1 t|Graph : +/1 b*|Graph Interface, l|Graph Port
-    +R32 : r|Graph Port { l|Graph Input, l|Graph Output }
-    +R33 : l|Socket { r|Graph Input, r|Process Input  : L7R+1 }
-    +R34 : l|Flow { r|Graph Output, r|Process Output }
+    +R32 : r|Graph Port { l|Graph Input Port, l|Graph Output Port }
+    +R33 : l|Socket { r|Graph Input Port, r|Process Input Port  : L7R+1 }
+    +R34 : l|Flow { r|Graph Output Port, r|Process Output Port }

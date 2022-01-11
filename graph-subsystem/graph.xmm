@@ -29,7 +29,7 @@ attributes
     Name : Graph Name {I}
     Graph spec {R25}
 --
-class Graph Input
+class Graph Input Port
 attributes
     Graph {I, I2, R32, R33}
     Graph Interface {I,R32}
@@ -41,7 +41,7 @@ attributes
     Name {I}
     Graph spec {I}
 --
-class Graph Output
+class Graph Output Port
 attributes
     Graph {I, I2, R32, R34}
     Graph Interface {I, R32}
@@ -73,7 +73,7 @@ attributes
     Graph {I,R29}
     Process Interface {I,R29}
 --
-class Process Input
+class Process Input Port
 attributes
     Port name {I,R30}
     Process {I,R30}
@@ -82,7 +82,7 @@ attributes
     Process Interface {I,R30}
     Socket {I2, R33}
 --
-class Process Output
+class Process Output Port
 attributes
     Port name {I,R30}
     Process {I, R30}
@@ -122,8 +122,8 @@ relationships
 --
     R30
     Process Port +
-        Process Input
-        Process Output
+        Process Input Port
+        Process Output Port
 --
     R31
     provides, M Graph Interface
@@ -132,16 +132,16 @@ relationships
 --
     R32
     Graph Port +
-        Graph Input
-        Graph Output
+        Graph Input Port
+        Graph Output Port
 --
     R33
     Socket +
-        Graph Input
-        Process Input
+        Graph Input Port
+        Process Input Port
 --
     R34
     Source +
-        Graph Output
-        Process Output
+        Graph Output Port
+        Process Output Port
 --
