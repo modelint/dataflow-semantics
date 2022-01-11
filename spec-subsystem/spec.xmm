@@ -2,7 +2,7 @@ metadata
     Title : Specification Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.1
-    Version : 0.2.1
+    Version : 0.2.3
     /// Creation date : January 8, 2022
     Modification date : January 10, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -22,7 +22,7 @@ class Graph Interface
 attributes
     Name {I, R4}
     Level {R4}
-    Graph Spec {I, R2, R4}
+    Graph spec {I, R2, R4}
 --
 class Graph Specification
 attributes
@@ -40,7 +40,7 @@ class Process Interface
 attributes
     Name {I, R4}
     Level {R4}
-    Process Spec {I, R3, R4}
+    Process spec {I, R3, R4}
 --
 class Process Specification
 attributes
@@ -48,8 +48,8 @@ attributes
 --
 relationships
     R1
-    can be included in, Mc Graph Specification
-    can include, Mc Process Specification
+    can be included in, M Graph Specification
+    can include, M Process Specification
     1 Compatible Process
 --
     R2
