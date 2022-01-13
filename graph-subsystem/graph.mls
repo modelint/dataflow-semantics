@@ -3,33 +3,39 @@ notation Starr
 presentation default
 orientation landscape
 color pink eraser
-sheet C
+sheet D
 padding l200 b200
 frame OS Engineer
 frame_presentation default
 nodes
-    Process Specification 6-7,2
+    Process Specification 7-8,2
     Process 5-6,3-4
-    Graph 8,4
-    Graph Specification 8,2
-    Graph Interface 11,4
-    Graph Port 9-10,5
+    Graph 9,4
+    Graph Specification 9,2
+    Graph Interface 12,4
+    Graph Port 10-11,5
     Process Interface 2-3,3-4
     Process Port 4,5
-    Graph Input Port 10-11,6-7
-    Graph Output Port 8-9,6-7
+    Graph Input Port 11-12,6-7
+    Graph Output Port 9-10,6-7
     Process Input Port 5,6-7
     Process Output Port 3,6-7
-    Socket 9-10,8-9
+    Socket 10-11,8-9
     Flow 7,8-9
-    Connection 8-9,10
+    Connection 8-9,9-10
+    Control Sequence/2 6,5
+    Switch 6,1-2
+    Case 4-5,2
 connectors
     -R25 : +/1 r|Graph Specification : +/1 l*|Graph
+    +R26.3 : +/2 t+2|Process : -/2 r-2|Process, l|Control Sequence : L6R+1 L4R+2
     -R27 : +/1 b|Socket : +/1 t*|Flow, l|Connection
     -R28.2 : +/1 r|Process Specification : +/1 b|Graph, t|Process
-    -R29 : +/1 b|Process : +/1 t*|Process Interface, l|Process Port
+    -R29 : -/1 b|Process : +/1 t*|Process Interface, l|Process Port
     +R30 : r|Process Port { l|Process Input Port, l|Process Output Port }
     -R31 : +/1 t|Graph : +/1 b*|Graph Interface, l|Graph Port
     +R32 : r|Graph Port { l|Graph Input Port, l|Graph Output Port }
     +R33 : l|Socket { r|Graph Input Port, r|Process Input Port  : L7R+1 }
     +R34 : l|Flow { r|Graph Output Port, r|Process Output Port }
+    +R35 : -/1 t-2|Process : +/1 r|Switch
+    +R36 : -/2 b|Switch : -/2 l|Process, t|Case

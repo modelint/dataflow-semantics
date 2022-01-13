@@ -9,11 +9,22 @@ metadata
     Copyright notice > MIT
     Organization logo > mint
 subsystem Graph
+class Case
+attributes
+    Switch {I, R36}
+    Deciding process {I, R36}
+    Dependent process {I, R36}
+--
 class Connection
 attributes
     Socket {I, R27}
     Flow {R27}
     Graph {I, R27}
+--
+class Control Sequence
+attributes
+    From process {I, R26}
+    To process {I, R26}
 --
 class Flow
 attributes
@@ -95,6 +106,11 @@ class Process Specification <import:Specification>
 attributes
     Name {I}
 --
+class Switch
+attributes
+    Name : Switch Name {I}
+    Process {I, R35}
+--
 class Socket
 attributes
     ID : Socket ID {I}
@@ -104,6 +120,11 @@ relationships
     R25
     defines, Mc Graph
     is defined by, 1 Graph Specification
+--
+    R26
+    executes before, Mc Process
+    executes after, Mc Process
+    1 Control Sequence
 --
     R27
     provides input to, Mc Socket
@@ -144,4 +165,13 @@ relationships
     Source +
         Graph Output Port
         Process Output Port
+--
+    R35
+    sets case in, Mc Switch
+    case is set by, 1 Process
+--
+    R36
+    may enable execution of, M Process
+    execution may be enabled by, Mc Switch
+    1 Case
 --
