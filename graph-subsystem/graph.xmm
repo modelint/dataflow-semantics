@@ -2,18 +2,30 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.3.0
+    Version : 0.3.2
     /// Creation date : January 8, 2022
-    Modification date : January 12, 2022
+    Modification date : January 13, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Graph
 class Case
 attributes
+    Name : Case Name {I}
     Switch {I, R36}
     Deciding process {I, R36}
-    Dependent process {I, R36}
+    Deciding process spec {I, R36}
+    Graph {I, R36}
+--
+class Execution Dependency
+attributes
+    Case {I, R37}
+    Switch {I, R37}
+    Graph {I, R37}
+    Deciding process {I, R37}
+    Deciding process spec {I, R37}
+    Dependent process {I, R37c}
+    Dependent process spec {I, R37c}
 --
 class Connection
 attributes
@@ -109,7 +121,9 @@ attributes
 class Switch
 attributes
     Name : Switch Name {I}
-    Process {I, R35}
+    Deciding process {I, R35}
+    Deciding process spec {I, R35}
+    Graph {I, R35}
 --
 class Socket
 attributes
@@ -122,8 +136,8 @@ relationships
     is defined by, 1 Graph Specification
 --
     R26
-    executes before, Mc Process
-    executes after, Mc Process
+    explicitly executes before, Mc Process
+    explicitly executes after, Mc Process
     1 Control Sequence
 --
     R27
@@ -167,11 +181,15 @@ relationships
         Process Output Port
 --
     R35
-    sets case in, Mc Switch
-    case is set by, 1 Process
+    chooses case in, Mc Switch
+    case is chosen by, 1 Process
 --
     R36
-    may enable execution of, M Process
-    execution may be enabled by, Mc Switch
-    1 Case
+    must select one, M Case
+    is selected by, 1 Switch
+--
+    R37
+    executes only if selected, Mc Case
+    permits execution of, M Process
+    1 Execution Dependency
 --
