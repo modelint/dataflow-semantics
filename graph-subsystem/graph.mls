@@ -4,7 +4,7 @@ presentation default
 orientation landscape
 color pink eraser
 sheet D
-padding l200 b200
+padding l300 b250
 frame OS Engineer
 frame_presentation default
 nodes
