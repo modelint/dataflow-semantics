@@ -2,46 +2,63 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.3.2
+    Version : 0.4.0
     /// Creation date : January 8, 2022
-    Modification date : January 13, 2022
+    Modification date : January 14, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Graph
-class Case
+class Compatible Process
 attributes
-    Name : Case Name {I}
-    Switch {I, R36}
-    Deciding process {I, R36}
-    Deciding process spec {I, R36}
-    Graph {I, R36}
+    Graph spec {I, R1}
+    Process spec {I, R1}
 --
-class Execution Dependency
+class Port
 attributes
-    Case {I, R37}
-    Switch {I, R37}
-    Graph {I, R37}
-    Deciding process {I, R37}
-    Deciding process spec {I, R37}
-    Dependent process {I, R37c}
-    Dependent process spec {I, R37c}
+    ID : Port ID {I, I2*}
+    Graph {I, I2*, UR6}
+    Content {I2*, R5}
 --
+///class Case
+///attributes
+///    Name : Case Name {I}
+///    Switch {I, R36}
+///    Deciding process {I, R36}
+///    Deciding process spec {I, R36}
+///    Graph {I, R36}
+///--
+///class Execution Dependency
+///attributes
+///    Case {I, R37}
+///    Switch {I, R37}
+///    Graph {I, R37}
+///    Deciding process {I, R37}
+///    Deciding process spec {I, R37}
+///    Dependent process {I, R37c}
+///    Dependent process spec {I, R37c}
+///--
 class Connection
 attributes
     Socket {I, R27}
     Flow {R27}
     Graph {I, R27}
+    Content {R27}
 --
-class Control Sequence
+class Content
 attributes
-    From process {I, R26}
-    To process {I, R26}
+    Name : Content Name {I}
 --
+///class Control Sequence
+///attributes
+///    From process {I, R26}
+///    To process {I, R26}
+///--
 class Flow
 attributes
-    ID : Flow ID {I}
-    Graph {I, UR34}
+    Output port {I, I2*, UR34}
+    Graph {I, I2*, IUR34}
+    Content {I2*, UR34}
 --
 class Graph Specification <import:Specification>
 attributes
@@ -49,147 +66,190 @@ attributes
 --
 class Graph
 attributes
-    Name : Graph Name {I, I2*}
-    Graph spec {R25, I2*}
+    Name : Graph Name {I}
+    Graph spec {R25}
 --
-class Graph Input Port
+class Interface
 attributes
-    Graph {I, I2, R32, R33}
-    Graph interface {I,R32}
-    Graph spec {I, R32}
-    Socket {I2, R33}
+    Name : Interface Name {I}
+    Process spec {I, R2}
+    Direction : Input Output
+    Content {R5}
 --
-class Graph Interface <import:Specification>
+class External Input
 attributes
-    Name {I}
-    Graph spec {I}
+    Graph {I, I2*, R32}
+    Port {I, I2*, R32}
+    Content {I2*, R32}
 --
-class Graph Output Port
+class External Output
 attributes
-    Graph {I, I2, R32, R34}
-    Graph interface {I, R32}
-    Graph spec {I, R32}
-    Flow {I2, R34}
+    Graph {I, I2*, R32}
+    Port {I, I2*, R32}
+    Content {I2*, R32}
 --
 class Graph Port
 attributes
-    Graph {I,R31}
-    Graph interface {I,R31}
-    Graph spec {I, R31}
+    Name : Port Name {I}
+    Graph {I, I2, I3*, R12, R6}
+    Port {I2, I3*, R6}
+    Content {I3*, R6}
+--
+class Process Port
+attributes
+    Name : Port Name {I}
+    Process {I, UR11}
+    Graph {I, I2, I3*, UR11, R6}
+    Port {I2, I3*, R6}
+    Content {I3*, R6}
 --
 class Process
 attributes
     Name : Process Name {I}
     Graph {I, R28}
-    Process spec {I, R28c}
 --
-class Process Interface <import:Specification>
+class Standard Process
 attributes
-    Name {I}
-    Process spec {I}
+    Name {I, R38}
+    Graph {I, R38}
 --
-class Process Port
+class Custom Process
 attributes
-    Name : Port Name {I}
-    Process {I,R29}
-    Process spec {I, R29}
-    Graph {I,R29}
-    Process interface {I,R29}
+    Name {I, R38}
+    Graph {I, R38}
+--
+class Custom Process Port
+attributes
+    Name {I, R11}
+    Process {I, R4, R11}
+    Graph {I, R4, R11}
+--
+class Standard Process Port
+attributes
+    Name {I, R11}
+    Process {I, I2, R29, R11}
+    Process spec {I2, R29}
+    Graph {I, I2, R29, R11}
+    Interface {I2 ,R29}
 --
 class Process Input Port
 attributes
-    Port name {I,R30}
-    Process {I,R30}
-    Process spec {I, R30}
-    Graph {I, I2, R30, R33}
-    Process interface {I,R30}
-    Socket {I2, R33}
+    Port {I, I2*, R30}
+    Graph {I, I2*, R30}
+    Content {I2*, R30}
 --
 class Process Output Port
 attributes
-    Port name {I,R30}
-    Process {I, R30}
-    Process spec {I, R30}
-    Graph {I, I2, R30, R34}
-    Process interface {I, R30}
-    Flow {I2, R34}
+    Port {I,R30}
+    Graph {I, R30}
 --
-class Process Specification <import:Specification>
+class Process Specification
 attributes
-    Name {I}
+    Name : Spec Name {I}
 --
-class Switch
-attributes
-    Name : Switch Name {I}
-    Deciding process {I, R35}
-    Deciding process spec {I, R35}
-    Graph {I, R35}
---
+///class Switch
+///attributes
+///    Name : Switch Name {I}
+///    Deciding process {I, R35}
+///    Deciding process spec {I, R35}
+///    Graph {I, R35}
+///--
 class Socket
 attributes
-    ID : Socket ID {I}
-    Graph {I, UR33}
+    Port {I, I2*, UR33}
+    Graph {I, I2*, UR33}
+    Content {I2*, UR33}
 --
 relationships
+    R1
+    can be included in, M Graph Specification
+    can include, M Process Specification
+    1 Compatible Process
+--
+    R3
+    provides, M Process Interface
+    is provided by, 1 Process Specification
+--
+    R4
+    provides, M Custom Process Port
+    is provided by, 1 Custom Process
+--
+    R5
+    conveys, 1 Content
+    is conveyed through, M Port
+--
+    R6
+    Port +
+        Process Port
+        Graph Port
+--
+    R11
+    Process Port +
+        Standard Process Port
+        Custom Process Port
+--
+    R12
+    provides, M Graph Port
+    is provided by, 1 Graph
+--
     R25
     defines, Mc Graph
     is defined by, 1 Graph Specification
 --
-    R26
-    explicitly executes before, Mc Process
-    explicitly executes after, Mc Process
-    1 Control Sequence
---
+///    R26
+///    explicitly executes before, Mc Process
+///    explicitly executes after, Mc Process
+///    1 Control Sequence
+///--
     R27
     provides input to, Mc Socket
     gets input from, 1 Flow
     1 Connection
 --
     R28
-    executes in, Mc Graph
-    executes, M Process Specification
-    M Process
+    executes in, 1 Graph
+    executes, M Process
 --
     R29
-    provides, M Process Interface
-    is provided by, Mc Process
-    1 Process Port
+    provides, M Interface
+    is provided by, Mc Standard Process
+    1 Standard Process Port
 --
     R30
     Process Port +
         Process Input Port
         Process Output Port
 --
-    R31
-    provides, M Graph Interface
-    is provided by, Mc Graph
-    1 Graph Port
---
     R32
     Graph Port +
-        Graph Input Port
-        Graph Output Port
+        External Input
+        External Output
 --
     R33
     Socket +
-        Graph Input Port
+        External Input
         Process Input Port
 --
     R34
-    Source +
-        Graph Output Port
+    Flow +
+        External Output
         Process Output Port
 --
-    R35
-    chooses case in, Mc Switch
-    case is chosen by, 1 Process
---
-    R36
-    must select one, M Case
-    is selected by, 1 Switch
---
-    R37
-    executes only if selected, Mc Case
-    permits execution of, M Process
-    1 Execution Dependency
+///    R35
+///    chooses case in, Mc Switch
+///    case is chosen by, 1 Process
+///--
+///    R36
+///    must select one, M Case
+///    is selected by, 1 Switch
+///--
+///    R37
+///    executes only if selected, Mc Case
+///    permits execution of, M Process
+///    1 Execution Dependency
+///--
+    R38
+    Process +
+        Standard Process
+        Custom Process
 --

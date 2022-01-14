@@ -56,10 +56,6 @@ relationships
     provides, M Graph Interface
     is provided by, 1 Graph Specification
 --
-    R3
-    provides, M Process Interface
-    is provided by, 1 Process Specification
---
     R4
     Interface +
         Process Interface
