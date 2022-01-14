@@ -20,24 +20,21 @@ attributes
     Graph {I, I2*, UR6}
     Content {I2*, R5}
 --
-///class Case
-///attributes
-///    Name : Case Name {I}
-///    Switch {I, R36}
-///    Deciding process {I, R36}
-///    Deciding process spec {I, R36}
-///    Graph {I, R36}
-///--
-///class Execution Dependency
-///attributes
-///    Case {I, R37}
-///    Switch {I, R37}
-///    Graph {I, R37}
-///    Deciding process {I, R37}
-///    Deciding process spec {I, R37}
-///    Dependent process {I, R37c}
-///    Dependent process spec {I, R37c}
-///--
+class Case
+attributes
+    Name : Case Name {I}
+    Switch {I, R36}
+    Deciding process {I, R36}
+    Graph {I, R36}
+--
+class Execution Dependency
+attributes
+    Case {I, R37}
+    Switch {I, R37}
+    Deciding process {I, R37}
+    Dependent process {I, R37c}
+    Graph {I, R37}
+--
 class Connection
 attributes
     Socket {I, R27}
@@ -147,13 +144,12 @@ class Process Specification
 attributes
     Name : Spec Name {I}
 --
-///class Switch
-///attributes
-///    Name : Switch Name {I}
-///    Deciding process {I, R35}
-///    Deciding process spec {I, R35}
-///    Graph {I, R35}
-///--
+class Switch
+attributes
+    Name : Switch Name {I}
+    Deciding process {I, R35}
+    Graph {I, R35}
+--
 class Socket
 attributes
     Port {I, I2*, UR33}
@@ -235,19 +231,19 @@ relationships
         External Output
         Process Output Port
 --
-///    R35
-///    chooses case in, Mc Switch
-///    case is chosen by, 1 Process
-///--
-///    R36
-///    must select one, M Case
-///    is selected by, 1 Switch
-///--
-///    R37
-///    executes only if selected, Mc Case
-///    permits execution of, M Process
-///    1 Execution Dependency
-///--
+    R35
+    chooses case in, Mc Switch
+    case is chosen by, 1 Process
+--
+    R36
+    must select one, M Case
+    is selected by, 1 Switch
+--
+    R37
+    executes only if selected, Mc Case
+    permits execution of, M Process
+    1 Execution Dependency
+--
     R38
     Process +
         Standard Process
