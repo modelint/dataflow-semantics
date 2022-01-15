@@ -2,7 +2,7 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.4.2
+    Version : 0.4.3
     /// Creation date : January 8, 2022
     Modification date : January 15, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -70,9 +70,9 @@ attributes
 class Interface
 attributes
     Name : Interface Name {I}
-    Process spec {I, R2}
+    Process spec {I, R3}
     Direction : Input Output
-    Content {R5}
+    Content {R2}
 --
 class External Input
 attributes
@@ -164,6 +164,10 @@ relationships
     can include, M Process Specification
     1 Compatible Process
 --
+    R2
+    specifies conveyance of, 1 Content
+    is required to be conveyed in, Mc Interface
+--
     R3
     provides, M Process Interface
     is provided by, 1 Process Specification
@@ -174,7 +178,7 @@ relationships
 --
     R5
     conveys, 1 Content
-    is conveyed through, M Port
+    is conveyed through, Mc Port
 --
     R6
     Port +
