@@ -8,23 +8,23 @@ padding l200 b300
 frame OS Engineer
 frame_presentation default
 nodes
-//    Port 15,10
-    Switch 10-11,5-6
-    Case 8-9,4
+    Switch 10-11,4-5
+    Case 8-9,3
+    Execution Dependency 7-8,4-5
     Graph Specification 13,2
     Process Specification/2 7,2
     Compatible Process 8-9,1
     Interface 5,2
-    Graph 13,7-8
-    Process 8-9,7-8
-    Standard Process 7,7
-    Standard Process Port/2 3-4,6
-    Custom Process Port 5,8
-    Custom Process 7,8
-    Content 9,10-11
-    Port 7,10-11
-    Graph Port 13,9-10
-    Process Port 4-5,9-10
+    Graph 13,6-7
+    Process 8-9,6-7
+    Standard Process 7,6
+    Standard Process Port/2 3-4,4
+    Custom Process Port 5,7
+    Custom Process 7,7
+    Content 9,10
+    Port 7,10
+    Graph Port 13,9
+    Process Port 4-5,9
     External Input 14,11
     External Output 12-13,11
     Process Input Port 5-6,11
@@ -32,8 +32,7 @@ nodes
     Socket 10,13
     Flow 7,13
     Connection 8-9,14
-//    Control Sequence/2 6-7,6
-    Execution Dependency 7-8,5-6
+    Control Sequence/2 8-9,8
 connectors
     +R1 : +/2 b|Graph Specification : +/1 t*|Process Specification, r|Compatible Process
     +R3 : -/1 b|Process Specification : -/1 t*|Interface
@@ -46,7 +45,7 @@ connectors
     -R27 : +/2 b|Socket : +/2 t*|Flow, l|Connection
     +R28 : +/1 b|Graph : +/1 t*|Process
     +R38 : b|Process { t|Standard Process, t|Custom Process }
-//    -R26.2 : +/2 r+2|Process : -/2 r-1|Process, l|Control Sequence : L5R+2
+    -R26.2 : +/2 r+2|Process : -/2 r-1|Process, l|Control Sequence : L7R+2
     -R29 : -/1 b|Standard Process : +/1 r|Interface, t|Standard Process Port
     +R30 : r|Process Port { l|Process Input Port, l|Process Output Port }
     +R32 : r|Graph Port { l|External Input, l|External Output }

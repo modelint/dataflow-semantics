@@ -46,11 +46,12 @@ class Content
 attributes
     Name : Content Name {I}
 --
-///class Control Sequence
-///attributes
-///    From process {I, R26}
-///    To process {I, R26}
-///--
+class Control Sequence
+attributes
+    From process {I, R26}
+    To process {I, R26}
+    Graph {I, R26}
+--
 class Flow
 attributes
     Output port {I, I2*, UR34}
@@ -192,11 +193,11 @@ relationships
     defines, Mc Graph
     is defined by, 1 Graph Specification
 --
-///    R26
-///    explicitly executes before, Mc Process
-///    explicitly executes after, Mc Process
-///    1 Control Sequence
-///--
+    R26
+    explicitly executes before, Mc Process
+    explicitly executes after, Mc Process
+    1 Control Sequence
+--
     R27
     provides input to, Mc Socket
     gets input from, 1 Flow
