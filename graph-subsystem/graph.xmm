@@ -2,7 +2,7 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.4.3
+    Version : 0.4.4
     /// Creation date : January 8, 2022
     Modification date : January 15, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -49,7 +49,7 @@ attributes
 class Control Sequence
 attributes
     From process {I, R26}
-    To process {I, R26}
+    To process {I, R26c}
     Graph {I, R26}
 --
 class Flow
@@ -122,14 +122,6 @@ attributes
     Process {I, R4, R11}
     Graph {I, R4, R11}
 --
-class Standard Process Port
-attributes
-    Name {I, R11}
-    Process {I, I2, R29, R11}
-    Process spec {I2, R29}
-    Graph {I, I2, R29, R11}
-    Interface {I2 ,R29}
---
 class Process Input Port
 attributes
     Port {I, I2*, R30}
@@ -146,17 +138,25 @@ class Process Specification
 attributes
     Name : Spec Name {I}
 --
-class Switch
-attributes
-    Name : Switch Name {I}
-    Deciding process {I, R35}
-    Graph {I, R35}
---
 class Socket
 attributes
     Port {I, I2*, UR33}
     Graph {I, I2*, UR33}
     Content {I2*, UR33}
+--
+class Standard Process Port
+attributes
+    Name {I, R11}
+    Process {I, I2, R29, R11}
+    Process spec {I2, R29}
+    Graph {I, I2, R29c, R11}
+    Interface {I2 ,R29}
+--
+class Switch
+attributes
+    Name : Switch Name {I}
+    Deciding process {I, R35}
+    Graph {I, R35}
 --
 relationships
     R1
