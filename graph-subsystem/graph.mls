@@ -57,8 +57,8 @@ connectors
     -R29 : -/1 b|Standard Process : +/1 r|Interface, t|Standard Process Port
     +R30 : r|Process Port { l|Process Input Port, l|Process Output Port : L10R-1 }
     +R32 : r|Graph Port { l|External Input, l|External Output }
-    +R33+1 : l|Socket { r|External Input, r|Process Input Port : L12R-2 }
-    +R34 : l|Flow { r|External Output, r|Process Output Port }
+    +R33+1 : l|Socket { r|External Output, r|Process Input Port : L12R-2 }
+    +R34 : l|Flow { r|External Input, r|Process Output Port }
     -R35.2 : -/2 t-2|Process : +/1 r|Switch
     -R36 : +/1 l|Switch : -/2 t|Case
     +R37 : +/2 r|Case : -/2 l*|Process, t|Execution Dependency

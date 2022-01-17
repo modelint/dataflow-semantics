@@ -2,7 +2,7 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.5.0
+    Version : 0.5.2
     /// Creation date : January 8, 2022
     Modification date : January 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -59,15 +59,15 @@ attributes
 --
 class External Input
 attributes
-    Graph {I, I2*, R32}
-    Port {I, I2*, R32}
-    Content {I2*, R32}
+    Graph {I, I2*, R32, R34}
+    Port {I, I2*, R32, R34}
+    Content {I2*, R32, R34}
 --
 class External Output
 attributes
-    Graph {I, I2*, R32}
-    Port {I, I2*, R32}
-    Content {I2*, R32}
+    Graph {I, I2*, R32, R33}
+    Port {I, I2*, R32, R33}
+    Content {I2*, R32, R33}
 --
 class Flow
 attributes
@@ -119,15 +119,15 @@ attributes
 --
 class Process Input Port
 attributes
-    Port {I, I2*, R30}
-    Graph {I, I2*, R30}
-    Content {I2*, R30}
+    Port {I, I2*, R30, R33}
+    Graph {I, I2*, R30, R33}
+    Content {I2*, R30, R33}
 --
 class Process Output Port
 attributes
-    Port {I, I2*, R30}
-    Graph {I, I2*, R30}
-    Content {I2*, R30}
+    Port {I, I2*, R30, R34}
+    Graph {I, I2*, R30, R34}
+    Content {I2*, R30, R34}
 --
 class Process Specification
 attributes
@@ -169,6 +169,7 @@ attributes
     Port {I, R8}
     Graph {I, R8}
     Store {I, R8}
+    Content {R8}
 --
 class Switch
 attributes
@@ -265,12 +266,12 @@ relationships
 --
     R33
     Socket +
-        External Input
+        External Output
         Process Input Port
 --
     R34
     Flow +
-        External Output
+        External Input
         Process Output Port
 --
     R35
