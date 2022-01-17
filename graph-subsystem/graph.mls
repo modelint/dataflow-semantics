@@ -4,7 +4,7 @@ presentation default
 orientation landscape
 color pink eraser
 sheet D
-padding l200 b300
+padding l200 b250
 frame OS Engineer
 frame_presentation default
 nodes
@@ -21,7 +21,7 @@ nodes
     Standard Process Port/2 3-4,4
     Custom Process Port/2 5,7
     Custom Process/2 7,7
-    Content 2,7
+    Content [C2]100% 2,7
     Port 7,10
     Graph Port 13,9
     Process Port 4-5,9
@@ -29,21 +29,28 @@ nodes
     External Output 12-13,11
     Process Input Port 5-6,11
     Process Output Port 4,11
-    Socket 10,13
-    Flow 7,13
-    Connection 8-9,14
+    Source 7,13-14
+    Socket 10,13-14
+    Store 5-6,14-15
+    Store Update 3,13
+    Flow 5-6,13
+    Connection 8-9,14-15
     Control Sequence/2 8-9,8
 connectors
     +R1 : +/2 b|Graph Specification : +/1 t*|Process Specification, r|Compatible Process
     -R2 : +/2 b|Interface : +/2 l|Content
     +R3 : -/1 b|Process Specification : -/1 t*|Interface
     +R4 : -/1 b|Custom Process : -/1 t*|Custom Process Port
-    -R5 : +/2 b|Port : +/1 r|Content
+    +R5 : +/2 b|Port : +/1 r+1|Content
     -R6 : l|Port { b|Graph Port>, t*|Process Port }
+    +R7 : b|Source { t|Flow, t|Store }
+    +R8 : -/1 r-2|Process Output Port : -/1 b-2|Store, t|Store Update
+    -R9 : -/1 r-1|Content : +/1 b+1|Store
+    +R10.2 : -/3 t|Graph : +/3 r|Store : L16R-2 L15R-2
     +R11 : l|Process Port { r|Custom Process Port, r|Standard Process Port }
     -R12 : +/1 r|Graph : +/1 l*|Graph Port
     -R25 : +/1 r|Graph Specification : +/1 l*|Graph
-    -R27 : +/2 b|Socket : +/2 t*|Flow, l|Connection
+    -R27 : +/2 b|Socket : +/2 t*|Source, l|Connection
     +R28 : +/1 b|Graph : +/1 t*|Process
     +R38 : b|Process { t|Standard Process, t|Custom Process }
     -R26.2 : +/2 r+2|Process : -/2 r-1|Process, l|Control Sequence : L7R+2

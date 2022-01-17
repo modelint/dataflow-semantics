@@ -2,24 +2,13 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.4.4
+    Version : 0.5.0
     /// Creation date : January 8, 2022
-    Modification date : January 15, 2022
+    Modification date : January 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Graph
-class Compatible Process
-attributes
-    Graph spec {I, R1}
-    Process spec {I, R1}
---
-class Port
-attributes
-    ID : Port ID {I, I2*}
-    Graph {I, I2*, UR6}
-    Content {I2*, R5}
---
 class Case
 attributes
     Name : Case Name {I}
@@ -27,18 +16,15 @@ attributes
     Deciding process {I, R36}
     Graph {I, R36}
 --
-class Execution Dependency
+class Compatible Process
 attributes
-    Case {I, R37}
-    Switch {I, R37}
-    Deciding process {I, R37}
-    Dependent process {I, R37c}
-    Graph {I, R37}
+    Graph spec {I, R1}
+    Process spec {I, R1}
 --
 class Connection
 attributes
     Socket {I, R27}
-    Flow {R27}
+    Source {R27}
     Graph {I, R27}
     Content {R27}
 --
@@ -52,27 +38,24 @@ attributes
     To process {I, R26c}
     Graph {I, R26}
 --
-class Flow
+class Custom Process
 attributes
-    Output port {I, I2*, UR34}
-    Graph {I, I2*, IUR34}
-    Content {I2*, UR34}
+    Name {I, R38}
+    Graph {I, R38}
 --
-class Graph Specification
+class Custom Process Port
 attributes
-    Name {I}
+    Name {I, R11}
+    Process {I, R4, R11}
+    Graph {I, R4, R11}
 --
-class Graph
+class Execution Dependency
 attributes
-    Name : Graph Name {I}
-    Graph spec {R25}
---
-class Interface
-attributes
-    Name : Interface Name {I}
-    Process spec {I, R3}
-    Direction : Input Output
-    Content {R2}
+    Case {I, R37}
+    Switch {I, R37}
+    Deciding process {I, R37}
+    Dependent process {I, R37c}
+    Graph {I, R37}
 --
 class External Input
 attributes
@@ -86,12 +69,45 @@ attributes
     Port {I, I2*, R32}
     Content {I2*, R32}
 --
+class Flow
+attributes
+    Output port {I, I2*, UR34}
+    Graph {I, I2*, IUR34}
+    Content {I2*, UR34}
+--
+class Graph
+attributes
+    Name : Graph Name {I}
+    Graph spec {R25}
+--
+class Graph Specification
+attributes
+    Name {I}
+--
 class Graph Port
 attributes
     Name : Port Name {I}
     Graph {I, I2, I3*, R12, R6}
     Port {I2, I3*, R6}
     Content {I3*, R6}
+--
+class Interface
+attributes
+    Name : Interface Name {I}
+    Process spec {I, R3}
+    Direction : Input Output
+    Content {R2}
+--
+class Port
+attributes
+    ID : Port ID {I, I2*}
+    Graph {I, I2*, UR6}
+    Content {I2*, R5}
+--
+class Process
+attributes
+    Name : Process Name {I}
+    Graph {I, R28}
 --
 class Process Port
 attributes
@@ -100,27 +116,6 @@ attributes
     Graph {I, I2, I3*, UR11, R6}
     Port {I2, I3*, R6}
     Content {I3*, R6}
---
-class Process
-attributes
-    Name : Process Name {I}
-    Graph {I, R28}
---
-class Standard Process
-attributes
-    Name {I, R38}
-    Graph {I, R38}
---
-class Custom Process
-attributes
-    Name {I, R38}
-    Graph {I, R38}
---
-class Custom Process Port
-attributes
-    Name {I, R11}
-    Process {I, R4, R11}
-    Graph {I, R4, R11}
 --
 class Process Input Port
 attributes
@@ -144,6 +139,17 @@ attributes
     Graph {I, I2*, UR33}
     Content {I2*, UR33}
 --
+class Source
+attributes
+    Name {I, I2*, UR7}
+    Graph {I, I2*}
+    Content {I, I2*}
+--
+class Standard Process
+attributes
+    Name {I, R38}
+    Graph {I, R38}
+--
 class Standard Process Port
 attributes
     Name {I, R11}
@@ -151,6 +157,18 @@ attributes
     Process spec {I2, R29}
     Graph {I, I2, R29c, R11}
     Interface {I2 ,R29}
+--
+class Store
+attributes
+    Name : Store Name {I}
+    Graph {I, I2*, R10}
+    Content {I2*, R9}
+--
+class Store Update
+attributes
+    Port {I, R8}
+    Graph {I, R8}
+    Store {I, R8}
 --
 class Switch
 attributes
@@ -185,6 +203,24 @@ relationships
         Process Port
         Graph Port
 --
+    R7
+    Source +
+        Flow
+        Store
+--
+    R8
+    is updated by, Mc Process Output Port
+    updates, Mc Store
+    1 Store Update
+--
+    R9
+    holds, 1 Content
+    is held by, Mc Store
+--
+    R10
+    has persistent content managed by, Mc Store
+    manages peristent content in, 1 Graph
+--
     R11
     Process Port +
         Standard Process Port
@@ -205,7 +241,7 @@ relationships
 --
     R27
     provides input to, Mc Socket
-    gets input from, 1 Flow
+    gets input from, 1 Source
     1 Connection
 --
     R28
