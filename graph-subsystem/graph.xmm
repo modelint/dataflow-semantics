@@ -2,7 +2,7 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.5.2
+    Version : 0.5.3
     /// Creation date : January 8, 2022
     Modification date : January 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -141,7 +141,7 @@ attributes
 --
 class Source
 attributes
-    Name {I, I2*, UR7}
+    ID {I, I2*, UR7}
     Graph {I, I2*}
     Content {I2*}
 --
@@ -160,9 +160,10 @@ attributes
 --
 class Store
 attributes
-    Name : Store Name {I}
-    Graph {I, I2*, R10}
-    Content {I2*, R9}
+    ID : Store ID {I, I3*, R7}
+    Name : Store Name {I2}
+    Graph {I, I2, I3*, R10, R7}
+    Content {I3*, R9, R7}
 --
 class Store Update
 attributes
