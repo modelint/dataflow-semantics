@@ -2,9 +2,9 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.5.3
+    Version : 0.5.4
     /// Creation date : January 8, 2022
-    Modification date : January 16, 2022
+    Modification date : January 17, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -24,7 +24,7 @@ attributes
 class Connection
 attributes
     Socket {I, R27}
-    Source {R27}
+    Flow {R27}
     Graph {I, R27}
     Content {R27}
 --
@@ -139,12 +139,6 @@ attributes
     Graph {I, I2*, UR33}
     Content {I2*, UR33}
 --
-class Source
-attributes
-    ID {I, I2*, UR7}
-    Graph {I, I2*}
-    Content {I2*}
---
 class Standard Process
 attributes
     Name {I, R38}
@@ -160,17 +154,20 @@ attributes
 --
 class Store
 attributes
-    ID : Store ID {I, I3*, R7}
-    Name : Store Name {I2}
-    Graph {I, I2, I3*, R10, R7}
-    Content {I3*, R9, R7}
+    Name : Store Name {I}
+    Graph {I, R10, R7}
 --
-class Store Update
+class Store Read Access
 attributes
     Port {I, R8}
     Graph {I, R8}
     Store {I, R8}
-    Content {R8}
+--
+class Store Write Access
+attributes
+    Port {I, R8}
+    Graph {I, R8}
+    Store {I, R8}
 --
 class Switch
 attributes
@@ -206,18 +203,14 @@ relationships
         Graph Port
 --
     R7
-    Source +
-        Flow
-        Store
+    accesses, 1c Store
+    is accessed by, Mc Process Input Port
+    1 Store Read Access
 --
     R8
     is updated by, Mc Process Output Port
     updates, Mc Store
-    1 Store Update
---
-    R9
-    holds, 1 Content
-    is held by, Mc Store
+    1 Store Write Access
 --
     R10
     has persistent content managed by, Mc Store
@@ -243,7 +236,7 @@ relationships
 --
     R27
     provides input to, Mc Socket
-    gets input from, 1 Source
+    gets input from, 1 Flow
     1 Connection
 --
     R28

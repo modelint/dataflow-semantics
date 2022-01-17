@@ -28,12 +28,12 @@ nodes
     External Input 14,11
     External Output 12-13,11
     Process Input Port 5-6,11
-    Process Output Port 4,11
-    Source 7,13-14
+    Process Output Port 3,11
     Socket 10,13-14
-    Store 5-6,14-15
-    Store Update 3,13
-    Flow 5-6,13
+    Store 4,14-15
+    Store Write Access/2 2,13
+    Store Read Access/2 4-5,13
+    Flow 7,13-14
     Connection 8-9,14-15
     Control Sequence/2 8-9,8
 connectors
@@ -43,22 +43,21 @@ connectors
     +R4 : -/1 b|Custom Process : -/1 t*|Custom Process Port
     +R5 : +/2 b|Port : +/1 r+1|Content
     -R6 : l|Port { b|Graph Port>, t*|Process Port }
-    +R7 : b|Source { t|Flow, t|Store }
-    +R8 : -/1 r-2|Process Output Port : -/1 b-2|Store, t|Store Update
-    -R9 : -/1 r-1|Content : +/1 b+1|Store
+    +R7.2 : -/1 r-1|Process Input Port : +/1 t|Store, t|Store Read Access
+    +R8 : -/1 r-2|Process Output Port : -/1 b|Store, t|Store Write Access
     +R10.2 : -/3 t|Graph : +/3 r|Store : L16R-2 L15R-2
     +R11 : l|Process Port { r|Custom Process Port, r|Standard Process Port }
     -R12 : +/1 r|Graph : +/1 l*|Graph Port
     -R25 : +/1 r|Graph Specification : +/1 l*|Graph
-    -R27 : +/2 b|Socket : +/2 t*|Source, l|Connection
+    -R27 : +/2 b|Socket : +/2 t*|Flow, l|Connection
     +R28 : +/1 b|Graph : +/1 t*|Process
     +R38 : b|Process { t|Standard Process, t|Custom Process }
     -R26.2 : +/2 r+2|Process : -/2 r-1|Process, l|Control Sequence : L7R+2
     -R29 : -/1 b|Standard Process : +/1 r|Interface, t|Standard Process Port
     +R30 : r|Process Port { l|Process Input Port, l|Process Output Port : L10R-1 }
     +R32 : r|Graph Port { l|External Input, l|External Output }
-    +R33+1 : l|Socket { r|External Output, r|Process Input Port : L12R-2 }
-    +R34 : l|Flow { r|External Input, r|Process Output Port }
+    +R33+1 : l|Socket { r|External Output, r+1|Process Input Port : L12R-2 }
+    +R34 : l|Flow { r|External Input, r+1|Process Output Port }
     -R35.2 : -/2 t-2|Process : +/1 r|Switch
     -R36 : +/1 l|Switch : -/2 t|Case
     +R37 : +/2 r|Case : -/2 l*|Process, t|Execution Dependency
