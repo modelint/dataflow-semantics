@@ -143,7 +143,7 @@ class Source
 attributes
     Name {I, I2*, UR7}
     Graph {I, I2*}
-    Content {I, I2*}
+    Content {I2*}
 --
 class Standard Process
 attributes
