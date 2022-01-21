@@ -2,7 +2,7 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.5.4
+    Version : 0.5.5
     /// Creation date : January 8, 2022
     Modification date : January 17, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -203,13 +203,13 @@ relationships
         Graph Port
 --
     R7
-    accesses, 1c Store
-    is accessed by, Mc Process Input Port
+    reads, 1c Store
+    is read by, Mc Process Input Port
     1 Store Read Access
 --
     R8
-    is updated by, Mc Process Output Port
-    updates, Mc Store
+    modifies, Mc Process Output Port
+    is modified by, Mc Store
     1 Store Write Access
 --
     R10
