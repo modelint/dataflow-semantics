@@ -2,42 +2,55 @@ metadata
     Title : Flow Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.1
-    Version : 0.1.0
+    Version : 0.2.0
     /// Creation date : January 21, 2022
-    Modification date : January 21, 2022
+    Modification date : January 22, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Flow
 class External Input
 attributes
-    Graph {I, I2*, R32, R34}
-    Port {I, I2*, R32, R34}
-    Content {I2*, R32, R34}
+    Name {I, I2*, R8}
+    Graph {I, I2*, R8}
+    Content {I2*, R8}
 --
 class External Output
 attributes
-    Graph {I, I2*, R32, R33}
-    Port {I, I2*, R32, R33}
-    Content {I2*, R32, R33}
+    Name {I, R8}
+    Graph {I, R8}
+    Content {R8, R56}
+    Process input {R56}
+--
+class External Process Input
+attributes
+    Process input port {I, R55}
+    Graph {I, R55}
 --
 class Flow
 attributes
-    Output port {I, I2*, UR34}
-    Graph {I, I2*, IUR34}
-    Content {I2*, UR34}
+    Name {I, UR52}
+    Graph {I, UR52}
+--
+class Process Connection
+attributes
+    Input port {I, R54}
+    Output port {I, R54}
+    Graph {I, R54}
+    Content {R54}
 --
 class Process Input Port
 attributes
-    Port {I, I2*, R30, R33}
-    Graph {I, I2*, R30, R33}
-    Content {I2*, R30, R33}
+    Name {I, I2*, R50}
+    Graph {I, I2*, R50, R53}
+    Content {I2*, R50}
+    Input flow {R53}
 --
 class Process Output Port
 attributes
-    Port {I, I2*, R30, R34}
-    Graph {I, I2*, R30, R34}
-    Content {I2*, R30, R34}
+    Name {I, I2*, R50}
+    Graph {I, I2*, R50}
+    Content {I2*, R50}
 --
 ///class Socket
 ///attributes
@@ -47,54 +60,53 @@ attributes
 ///--
 class Store <import:Graph>
 attributes
-    Name {I}
-    Graph {I}
+    Name {I, R52}
+    Graph {I, R52}
 --
-class Store Read Access
+class Read Access
 attributes
-    Port {I, R8}
-    Graph {I, R8}
-    Store {I, R8}
+    Port {I, R50}
+    Graph {I, R50}
+    Store {I, R50}
 --
-class Store Write Access
+class Write Access
 attributes
-    Port {I, R8}
-    Graph {I, R8}
-    Store {I, R8}
+    Port {I, R51}
+    Graph {I, R51}
+    Store {I, R51}
 --
 relationships
-    R7
+    R50
     reads, 1c Store
     is read by, Mc Process Input Port
-    1 Store Read Access
+    1 Read Access
 --
-    R8
+    R51
     modifies, Mc Process Output Port
     is modified by, Mc Store
-    1 Store Write Access
+    1 Write Access
 --
-///    R27
-///    provides input to, Mc Socket
-///    gets input from, 1 Flow
-///    1 Connection
-///--
-    R30
-    Process Port +
-        Process Input Port
-        Process Output Port
---
-    R32
-    Graph Port +
+    R52
+    Flow +
         External Input
-        External Output
+        Process Output Port
+        Store
 --
-///    R33
-///    Socket +
-///        External Output
-///        Process Input Port
-///--
-///    R34
-///    Flow +
-///        External Input
-///        Process Output Port
-///--
+    R53
+    feeds, Mc Process Input Port
+    consumes, 1 Flow
+--
+    R54
+    feeds, Mc Process Input Port
+    consumes, 1c Process Output Flow
+    1 Process Connection
+--
+    R55
+    feeds, M Process Input Port
+    consumes, 1c External Input
+    1 External Process Input
+--
+    R56
+    feeds, Mc External Output
+    consumes, 1 Process Output Port
+--
