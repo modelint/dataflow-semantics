@@ -2,62 +2,26 @@ diagram class
 notation Starr
 presentation default
 orientation landscape
-color pink eraser
+color teal
 sheet D
 padding l200 b250
 frame OS Engineer
 frame_presentation default
 nodes
-    Switch 10-11,4-5
-    Case 8-9,3
-    Execution Dependency 7-8,4-5
-    Graph Specification 13,2
-    Process Specification/2 7,2
-    Compatible Process 8-9,1
-    Interface 5,2
-    Graph 13,6-7
-    Process 8-9,6-7
-    Standard Process/2 7,6
-    Standard Process Port/2 3-4,4
-    Custom Process Port/2 5,7
-    Custom Process/2 7,7
-    Content [C2]100% 2,7
-    Port 7,8
-    Graph Port 13,9
+    Process Input Port 6,2
+    Flow 6,5
+    External Input 8,6
     Process Port 4-5,9
-    External Input 14,11
-    External Output 12-13,11
-    Process Input Port 5-6,11
-    Process Output Port 3,11
-    Store 4,14-15
-    Store Write Access/2 2,13
-    Store Read Access/2 4-5,13
+    Process Output Port 4,8
+    External Output 4,10-11
+    Store 9,8
+    Store Read Access/2 11,4
+    Store Write Access/2 6,9
 //    Socket 10,13-14
-//    Flow 7,13-14
 //    Connection 8-9,14-15
-    Control Sequence/2 8-9,8
-connectors
-    +R1 : +/2 b|Graph Specification : +/1 t*|Process Specification, r|Compatible Process
-    -R2 : +/2 b|Interface : +/2 l|Content
-    +R3 : -/1 b|Process Specification : -/1 t*|Interface
-    +R4 : -/1 b|Custom Process : -/1 t*|Custom Process Port
-    +R5 : +/2 b|Port : +/1 r+1|Content
-    -R6 : r|Port { b|Graph Port>, t*|Process Port }
-    +R7.2 : -/1 r-1|Process Input Port : +/1 t|Store, t|Store Read Access
-    +R8 : -/1 r-2|Process Output Port : -/1 b|Store, t|Store Write Access
-    +R10.2 : -/3 t|Graph : +/3 r|Store : L16R-2 L15R-2
-    +R11 : l|Process Port { r|Custom Process Port, r|Standard Process Port }
-    -R12 : +/1 r|Graph : +/1 l*|Graph Port
-    -R25 : +/1 r|Graph Specification : +/1 l*|Graph
+//connectors
 //    -R27 : +/2 b|Socket : +/2 t*|Flow, l|Connection
-    +R28 : +/1 b|Graph : +/1 t*|Process
-    +R38 : b|Process { t|Standard Process, t|Custom Process }
-    -R26.2 : +/2 r+2|Process : -/2 r-1|Process, l|Control Sequence : L7R+2
-    -R29 : -/1 b|Standard Process : +/1 r|Interface, t|Standard Process Port
-    +R30 : r|Process Port { l|Process Input Port, l|Process Output Port : L10R-1 }
-    +R32 : r|Graph Port { l|External Input, l|External Output }
+//    +R30 : r|Process Port { l|Process Input Port, l|Process Output Port : L10R-1 }
+//    +R32 : r|Graph Port { l|External Input, l|External Output }
 //    +R33+1 : l|Socket { r|External Output, r+1|Process Input Port : L12R-2 }
 //    +R34 : l|Flow { r|External Input, r+1|Process Output Port }
-    -R35.2 : -/2 t-2|Process : +/1 r|Switch
-    -R36 : +/1 l|Switch : -/2 t|Case
-    +R37 : +/2 r|Case : -/2 l*|Process, t|Execution Dependency

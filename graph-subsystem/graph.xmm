@@ -2,9 +2,9 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.6.0
+    Version : 0.6.2
     /// Creation date : January 8, 2022
-    Modification date : January 21, 2022
+    Modification date : January 22, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -12,9 +12,9 @@ subsystem Graph
 class Case
 attributes
     Name : Case Name {I}
-    Switch {I, R36}
-    Deciding process {I, R36}
-    Graph {I, R36}
+    Switch {I, R17}
+    Deciding process {I, R17}
+    Graph {I, R17}
 --
 class Compatible Process
 attributes
@@ -27,14 +27,14 @@ attributes
 --
 class Control Sequence
 attributes
-    From process {I, R26}
-    To process {I, R26c}
-    Graph {I, R26}
+    From process {I, R14}
+    To process {I, R14c}
+    Graph {I, R14}
 --
 class Custom Process
 attributes
-    Name {I, R38}
-    Graph {I, R38}
+    Name {I, R19}
+    Graph {I, R19}
 --
 class Custom Process Port
 attributes
@@ -44,16 +44,28 @@ attributes
 --
 class Execution Dependency
 attributes
-    Case {I, R37}
-    Switch {I, R37}
-    Deciding process {I, R37}
-    Dependent process {I, R37c}
-    Graph {I, R37}
+    Case {I, R18}
+    Switch {I, R18}
+    Deciding process {I, R18}
+    Dependent process {I, R18c}
+    Graph {I, R18}
+--
+class External Input <import:Flow>
+attributes
+    Graph {I, I2*, R8}
+    Port {I, I2*, R8}
+    Content {I2*, R8}
+--
+class External Output <import:Flow>
+attributes
+    Graph {I, I2*, R8}
+    Port {I, I2*, R8}
+    Content {I2*, R8}
 --
 class Graph
 attributes
     Name : Graph Name {I}
-    Graph spec {R25}
+    Graph spec {R9}
 --
 class Graph Specification
 attributes
@@ -82,7 +94,19 @@ attributes
 class Process
 attributes
     Name : Process Name {I}
-    Graph {I, R28}
+    Graph {I, R13}
+--
+class Process Input Port <import:Flow>
+attributes
+    Port {I, I2*, R7}
+    Graph {I, I2*, R7}
+    Content {I2*, R7}
+--
+class Process Output Port <import:Flow>
+attributes
+    Port {I, I2*, R7}
+    Graph {I, I2*, R7}
+    Content {I2*, R7}
 --
 class Process Port
 attributes
@@ -98,16 +122,16 @@ attributes
 --
 class Standard Process
 attributes
-    Name {I, R38}
-    Graph {I, R38}
+    Name {I, R19}
+    Graph {I, R19}
 --
 class Standard Process Port
 attributes
     Name {I, R11}
-    Process {I, I2, R29, R11}
-    Process spec {I2, R29}
-    Graph {I, I2, R29c, R11}
-    Interface {I2 ,R29}
+    Process {I, I2, R15, R11}
+    Process spec {I2, R15}
+    Graph {I, I2, R15c, R11}
+    Interface {I2 ,R15}
 --
 class Store
 attributes
@@ -117,8 +141,8 @@ attributes
 class Switch
 attributes
     Name : Switch Name {I}
-    Deciding process {I, R35}
-    Graph {I, R35}
+    Deciding process {I, R16}
+    Graph {I, R16}
 --
 relationships
     R1
@@ -147,6 +171,20 @@ relationships
         Process Port
         Graph Port
 --
+    R7
+    Process Port +
+        Process Input Port
+        Process Output Port
+--
+    R8
+    Graph Port +
+        External Input
+        External Output
+--
+    R9
+    defines, Mc Graph
+    is defined by, 1 Graph Specification
+--
     R10
     has persistent content managed by, Mc Store
     manages peristent content in, 1 Graph
@@ -160,38 +198,34 @@ relationships
     provides, M Graph Port
     is provided by, 1 Graph
 --
-    R25
-    defines, Mc Graph
-    is defined by, 1 Graph Specification
+    R13
+    executes in, 1 Graph
+    executes, M Process
 --
-    R26
+    R14
     explicitly executes before, Mc Process
     explicitly executes after, Mc Process
     1 Control Sequence
 --
-    R28
-    executes in, 1 Graph
-    executes, M Process
---
-    R29
+    R15
     provides, M Interface
     is provided by, Mc Standard Process
     1 Standard Process Port
 --
-    R35
+    R16
     chooses case in, Mc Switch
     case is chosen by, 1 Process
 --
-    R36
+    R17
     must select one, M Case
     is selected by, 1 Switch
 --
-    R37
+    R18
     executes only if selected, Mc Case
     permits execution of, M Process
     1 Execution Dependency
 --
-    R38
+    R19
     Process +
         Standard Process
         Custom Process

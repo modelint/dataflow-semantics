@@ -21,18 +21,11 @@ attributes
     Port {I, I2*, R32, R33}
     Content {I2*, R32, R33}
 --
-///class Flow
-///attributes
-///    Output port {I, I2*, UR34}
-///    Graph {I, I2*, IUR34}
-///    Content {I2*, UR34}
-///--
-class Graph Port <import:Graph>
+class Flow
 attributes
-    Name : Port Name {I}
-    Graph {I, I2, I3*, R12, R6}
-    Port {I2, I3*, R6}
-    Content {I3*, R6}
+    Output port {I, I2*, UR34}
+    Graph {I, I2*, IUR34}
+    Content {I2*, UR34}
 --
 class Process Input Port
 attributes
