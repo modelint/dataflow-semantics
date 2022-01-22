@@ -1,0 +1,107 @@
+metadata
+    Title : Flow Subsystem Class Model
+    Author : Leon Starr
+    Document ID : mint.dataflow.td.1
+    Version : 0.1.0
+    /// Creation date : January 21, 2022
+    Modification date : January 21, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Flow
+class External Input
+attributes
+    Graph {I, I2*, R32, R34}
+    Port {I, I2*, R32, R34}
+    Content {I2*, R32, R34}
+--
+class External Output
+attributes
+    Graph {I, I2*, R32, R33}
+    Port {I, I2*, R32, R33}
+    Content {I2*, R32, R33}
+--
+///class Flow
+///attributes
+///    Output port {I, I2*, UR34}
+///    Graph {I, I2*, IUR34}
+///    Content {I2*, UR34}
+///--
+class Graph Port <import:Graph>
+attributes
+    Name : Port Name {I}
+    Graph {I, I2, I3*, R12, R6}
+    Port {I2, I3*, R6}
+    Content {I3*, R6}
+--
+class Process Input Port
+attributes
+    Port {I, I2*, R30, R33}
+    Graph {I, I2*, R30, R33}
+    Content {I2*, R30, R33}
+--
+class Process Output Port
+attributes
+    Port {I, I2*, R30, R34}
+    Graph {I, I2*, R30, R34}
+    Content {I2*, R30, R34}
+--
+///class Socket
+///attributes
+///    Port {I, I2*, UR33}
+///    Graph {I, I2*, UR33}
+///    Content {I2*, UR33}
+///--
+class Store <import:Graph>
+attributes
+    Name {I}
+    Graph {I}
+--
+class Store Read Access
+attributes
+    Port {I, R8}
+    Graph {I, R8}
+    Store {I, R8}
+--
+class Store Write Access
+attributes
+    Port {I, R8}
+    Graph {I, R8}
+    Store {I, R8}
+--
+relationships
+    R7
+    reads, 1c Store
+    is read by, Mc Process Input Port
+    1 Store Read Access
+--
+    R8
+    modifies, Mc Process Output Port
+    is modified by, Mc Store
+    1 Store Write Access
+--
+///    R27
+///    provides input to, Mc Socket
+///    gets input from, 1 Flow
+///    1 Connection
+///--
+    R30
+    Process Port +
+        Process Input Port
+        Process Output Port
+--
+    R32
+    Graph Port +
+        External Input
+        External Output
+--
+///    R33
+///    Socket +
+///        External Output
+///        Process Input Port
+///--
+///    R34
+///    Flow +
+///        External Input
+///        Process Output Port
+///--
