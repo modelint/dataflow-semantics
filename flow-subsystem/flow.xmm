@@ -52,12 +52,6 @@ attributes
     Graph {I, I2*, R50}
     Content {I2*, R50}
 --
-///class Socket
-///attributes
-///    Port {I, I2*, UR33}
-///    Graph {I, I2*, UR33}
-///    Content {I2*, UR33}
-///--
 class Store <import:Graph>
 attributes
     Name {I, R52}
