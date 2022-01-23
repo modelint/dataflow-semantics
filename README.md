@@ -15,7 +15,7 @@ What we like about data flow diagrams is that they provide a way to specify the 
 This is important if you are building platform independent models like we do in the Shlaer-Mellor Executable UML community.
 We don't tell the programmer (or model compiler) to execute actions in any particular order UNLESS that order is essential on all platforms.
 
-This work was motivated by the sm-metamodel work. In the process of building the Shlaer-Mellor metamodel it became obvious that data flow diagrams and the related semantics were an entirely separate subject subject matter. Therefore, it is it's own distinct model domain.
+This work was motivated by the [Shlaer-Mellor Metamodel](https://github.com/modelint/shlaer-mellor-metamodel/wiki) work. In the process of building the Shlaer-Mellor metamodel it became obvious that data flow diagrams and the related semantics were an entirely separate subject subject matter. Therefore, it is it's own distinct model domain.
 
 There's no code in this repository. The models are all Shlaer-Mellor Executable UML. We use the [Flatland](https://github.com/modelint/flatland-model-diagram-editor/wiki) diagram generator to draw our models.
 
