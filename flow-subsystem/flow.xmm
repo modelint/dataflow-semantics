@@ -2,7 +2,7 @@ metadata
     Title : Flow Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.1
-    Version : 0.2.3
+    Version : 0.2.4
     /// Creation date : January 21, 2022
     Modification date : January 22, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -26,6 +26,7 @@ attributes
 class External Process Input
 attributes
     Process input port {I, R55}
+    Process {I, R55}
     Graph {I, R55}
     Content {R55}
     External input {R55}
@@ -49,7 +50,7 @@ attributes
 --
 class Process Input Source
 attributes
-    Source : Source ID {I}
+    ID : Source ID {I}
     Graph {I, UR52}
 --
 class Process Output Port
