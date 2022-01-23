@@ -2,7 +2,7 @@ metadata
     Title : Flow Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.1
-    Version : 0.2.0
+    Version : 0.2.1
     /// Creation date : January 21, 2022
     Modification date : January 22, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -18,19 +18,15 @@ attributes
 class External Output
 attributes
     Name {I, R8}
-    Graph {I, R8}
+    Graph {I, R8, R56}
     Content {R8, R56}
-    Process input {R56}
+    Process output {R56}
 --
 class External Process Input
 attributes
     Process input port {I, R55}
     Graph {I, R55}
---
-class Flow
-attributes
-    Name {I, UR52}
-    Graph {I, UR52}
+    External input {R55}
 --
 class Process Connection
 attributes
@@ -41,16 +37,21 @@ attributes
 --
 class Process Input Port
 attributes
-    Name {I, I2*, R50}
-    Graph {I, I2*, R50, R53}
-    Content {I2*, R50}
+    Name {I, I2*, R50, R7}
+    Graph {I, I2*, R50, R53, R7}
+    Content {I2*, R50, R7}
     Input flow {R53}
+--
+class Process Input Source
+attributes
+    Name {I, UR52}
+    Graph {I, UR52}
 --
 class Process Output Port
 attributes
-    Name {I, I2*, R50}
-    Graph {I, I2*, R50}
-    Content {I2*, R50}
+    Name {I, I2*, R50, R7}
+    Graph {I, I2*, R50, R7}
+    Content {I2*, R50, R7}
 --
 class Store <import:Graph>
 attributes
@@ -81,14 +82,14 @@ relationships
     1 Write Access
 --
     R52
-    Flow +
+    Process Input Source +
         External Input
         Process Output Port
         Store
 --
     R53
     feeds, Mc Process Input Port
-    consumes, 1 Flow
+    must consume, 1 Process Input Source
 --
     R54
     feeds, Mc Process Input Port
@@ -96,7 +97,7 @@ relationships
     1 Process Connection
 --
     R55
-    feeds, M Process Input Port
+    feeds, Mc Process Input Port
     consumes, 1c External Input
     1 External Process Input
 --

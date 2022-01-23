@@ -9,7 +9,7 @@ frame OS Engineer
 frame_presentation default
 nodes
     Process Input Port/2 6,2
-    Flow 6,5
+    Process Input Source/2 6,6
     External Input 8,6
     Process Port 4-5,9
     Process Output Port/2 4,8
@@ -22,8 +22,8 @@ nodes
 connectors
     +R50 : -/1 t-1|Process Input Port : +/1 l|Store, b|Read Access
     -R51 : +/1 t*|Process Output Port : +/1 b|Store, l|Write Access
-    +R52 : r|Flow { r|External Input, l-1|Store, l+1|Process Output Port }
-    -R53 : +/1 r|Process Input Port : +/1 l*|Flow
+    +R52 : r|Process Input Source { r|External Input, l-1|Store, l+1|Process Output Port }
+    -R53 : +/1 r|Process Input Port : +/1 l*|Process Input Source
     +R54.2 : -/1 b|Process Input Port : -/1 l-1|Process Output Port, t|Process Connection
     +R55.2 : +/1 t+1|Process Input Port : +/1 l|External Input, t|External Process Input
     -R56 : +/1 r|Process Output Port : +/1 l*|External Output
