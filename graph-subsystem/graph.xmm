@@ -2,7 +2,7 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.6.3
+    Version : 0.6.4
     /// Creation date : January 8, 2022
     Modification date : January 22, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -99,12 +99,14 @@ attributes
 class Process Input Port <import:Flow>
 attributes
     Name {I, I2*, R7}
+    Process {I, I2*, R7}
     Graph {I, I2*, R7}
     Content {I2*, R7}
 --
 class Process Output Port <import:Flow>
 attributes
     Name {I, I2*, R7}
+    Process {I, I2*, R7}
     Graph {I, I2*, R7}
     Content {I2*, R7}
 --
@@ -135,8 +137,9 @@ attributes
 --
 class Store
 attributes
-    Name : Store Name {I, R52}
-    Graph {I, R10, R52}
+    Name : Store Name {I}
+    Source {I2, R52}
+    Graph {I, I2, R10, R52}
 --
 class Switch
 attributes
