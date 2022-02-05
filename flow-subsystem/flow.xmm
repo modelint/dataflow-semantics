@@ -2,13 +2,19 @@ metadata
     Title : Flow Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.1
-    Version : 0.2.4
+    Version : 0.3.1
     /// Creation date : January 21, 2022
-    Modification date : January 22, 2022
+    Modification date : February 5, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Flow
+class Conditional Input
+attributes
+    Input set {I, R52}
+    Process Output Port {I, R52}
+    Graph {I, R52}
+--
 class External Input
 attributes
     Name {I, I2*, R8}
@@ -67,6 +73,11 @@ attributes
     Graph {I, I2, R52}
     Source {I2, R52}
 --
+class Switched Input Set
+attributes
+    Source {I, R52}
+    Graph {I, R52}
+--
 class Read Access
 attributes
     Port {I, R50}
@@ -97,6 +108,7 @@ relationships
         External Input
         Process Output Port
         Store
+        Switched Input Set
 --
     R53
     feeds, Mc Process Input Port
@@ -115,4 +127,9 @@ relationships
     R56
     feeds, Mc External Output
     consumes, 1 Process Output Port
+--
+    R57
+    selects among, M Process Output Port
+    is available in, Mc Switched Input Set
+    1 Conditional Process Input
 --

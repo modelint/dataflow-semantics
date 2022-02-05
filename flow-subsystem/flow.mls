@@ -19,11 +19,14 @@ nodes
     External Output 3,10-11
     Process Output Port/2 3,8
     Process Connection/2 2,5
+    Switched Input Set 1,8
+    Conditional Input 2,9 >right
 connectors
     +R50 : -/1 t-1|Process Input Port : +/1 l+1|Store, b|Read Access
     -R51 : +/1 t*|Process Output Port : +/1 b|Store, l|Write Access
-    +R52 : r|Process Input Source { r|External Input, l-1|Store, l+1|Process Output Port }
+    +R52 : r|Process Input Source { r|External Input, l-1|Store, l+1|Process Output Port, l|Switched Input Set }
     -R53 : +/1 r|Process Input Port : +/1 l*|Process Input Source
     +R54.2 : -/1 b|Process Input Port : -/1 l-1|Process Output Port, t|Process Connection
     +R55.2 : +/1 t+1|Process Input Port : +/1 l|External Input, t|External Process Input
     -R56 : +/1 r|Process Output Port : +/1 l*|External Output
+    -R57 : +/1 b|Process Output Port : +/1 t*|Switched Input Set, l|Conditional Input
