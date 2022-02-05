@@ -2,7 +2,7 @@ metadata
     Title : Flow Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.1
-    Version : 0.3.1
+    Version : 0.3.2
     /// Creation date : January 21, 2022
     Modification date : February 5, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -12,7 +12,7 @@ subsystem Flow
 class Conditional Input
 attributes
     Input set {I, R52}
-    Process Output Port {I, R52}
+    Process output port {I, R52}
     Graph {I, R52}
 --
 class External Input
