@@ -2,9 +2,9 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.6.4
+    Version : 0.7.0
     /// Creation date : January 8, 2022
-    Modification date : January 22, 2022
+    Modification date : February 13, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -197,7 +197,7 @@ relationships
         Custom Process Port
 --
     R12
-    provides, M Graph Port
+    provides, Mc Graph Port
     is provided by, 1 Graph
 --
     R13
