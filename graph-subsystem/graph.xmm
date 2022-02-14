@@ -2,9 +2,9 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.7.0
+    Version : 0.8.0
     /// Creation date : January 8, 2022
-    Modification date : February 13, 2022
+    Modification date : February 14, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -31,16 +31,12 @@ attributes
     To process {I, R14c}
     Graph {I, R14}
 --
-class Custom Process
+class Custom Port
 attributes
-    Name {I, R19}
-    Graph {I, R19}
---
-class Custom Process Port
-attributes
-    Name {I, R11}
-    Process {I, R4, R11}
-    Graph {I, R4, R11}
+    Name {I, R15}
+    Process {I, R15}
+    Graph {I, R15}
+    Content {R5}
 --
 class Execution Dependency
 attributes
@@ -52,15 +48,13 @@ attributes
 --
 class External Input <import:Flow>
 attributes
-    Graph {I, I2*, R8}
-    Port {I, I2*, R8}
-    Content {I2*, R8}
+    ID : External Input ID {I, R8}
+    Graph {I, R8}
 --
 class External Output <import:Flow>
 attributes
-    Graph {I, I2*, R8}
-    Port {I, I2*, R8}
-    Content {I2*, R8}
+    ID : Internal Input ID {I, R8}
+    Graph {I, R8}
 --
 class Graph
 attributes
@@ -71,69 +65,59 @@ class Graph Specification
 attributes
     Name {I}
 --
-class Graph Port
+class External Interface
 attributes
-    Name : Port Name {I}
-    Graph {I, I2, I3*, R12, R6}
-    Port {I2, I3*, R6}
-    Content {I3*, R6}
+    ID {I, UR8}
+    Name : Interface Name {I2}
+    Graph {I, I2, R12}
+    Content {R6}
 --
-class Interface
+class Port Specification
 attributes
-    Name : Interface Name {I}
+    Name : Port Specification Name {I}
     Process spec {I, R3}
     Direction : Input Output
     Content {R2}
---
-class Port
-attributes
-    ID : Port ID {I, I2*}
-    Graph {I, I2*, UR6}
-    Content {I2*, R5}
 --
 class Process
 attributes
     Name : Process Name {I}
     Graph {I, R13}
 --
-class Process Input Port <import:Flow>
+class Input Port <import:Flow>
 attributes
-    Name {I, I2*, R7}
-    Process {I, I2*, R7}
-    Graph {I, I2*, R7}
-    Content {I2*, R7}
+    ID : Input Port ID {R7}
+    Process {I, R7}
+    Graph {I, R7}
 --
-class Process Output Port <import:Flow>
+class Output Port <import:Flow>
 attributes
-    Name {I, I2*, R7}
-    Process {I, I2*, R7}
-    Graph {I, I2*, R7}
-    Content {I2*, R7}
+    ID : Output Port ID {R7}
+    Process {I, R7}
+    Graph {I, R7}
 --
-class Process Port
+class Port
 attributes
-    Name : Port Name {I}
-    Process {I, UR11}
-    Graph {I, I2, I3*, UR11, R6}
-    Port {I2, I3*, R6}
-    Content {I3*, R6}
+    ID {I, UR7}
+    Graph {I, I2, R11}
+    Process {I2, R11}
+    Name : Port Name {I2}
 --
 class Process Specification
 attributes
     Name : Spec Name {I}
 --
-class Standard Process
+///class Standard Process
+///attributes
+///    Name {I, R19}
+///    Graph {I, R19}
+///--
+class Standard Port
 attributes
-    Name {I, R19}
-    Graph {I, R19}
---
-class Standard Process Port
-attributes
-    Name {I, R11}
-    Process {I, I2, R15, R11}
-    Process spec {I2, R15}
-    Graph {I, I2, R15c, R11}
-    Interface {I2 ,R15}
+    Port {I, R15}
+    Process {I, R15}
+    Graph {I, R15}
+    Port Specification {R4}
 --
 class Store
 attributes
@@ -154,32 +138,31 @@ relationships
 --
     R2
     specifies conveyance of, 1 Content
-    is required to be conveyed in, Mc Interface
+    is required to be conveyed in, Mc Port Specification
 --
     R3
-    provides, M Process Interface
+    provides, M Port Specification
     is provided by, 1 Process Specification
 --
     R4
-    provides, M Custom Process Port
-    is provided by, 1 Custom Process
+    specifies, Mc Standard Port
+    is specified by, 1 Port Specification
 --
     R5
     conveys, 1 Content
-    is conveyed through, Mc Port
+    is conveyed through, Mc Custom Port
 --
     R6
-    Port +
-        Process Port
-        Graph Port
+    is conveyed through, Mc External Interface
+    conveys, 1 Content
 --
     R7
-    Process Port +
-        Process Input Port
-        Process Output Port
+    Port +
+        Input Port
+        Output Port
 --
     R8
-    Graph Port +
+    External Interface +
         External Input
         External Output
 --
@@ -192,12 +175,16 @@ relationships
     manages peristent content in, 1 Graph
 --
     R11
-    Process Port +
-        Standard Process Port
-        Custom Process Port
+    defines portal for communication as, Mc Port
+    is communication portal defined on, 1 Process
+--
+    R15
+    Port +
+        Standard Port
+        Custom Port
 --
     R12
-    provides, Mc Graph Port
+    provides, Mc External Interface
     is provided by, 1 Graph
 --
     R13
@@ -208,11 +195,6 @@ relationships
     explicitly executes before, Mc Process
     explicitly executes after, Mc Process
     1 Control Sequence
---
-    R15
-    provides, M Interface
-    is provided by, Mc Standard Process
-    1 Standard Process Port
 --
     R16
     chooses case in, Mc Switch
@@ -226,9 +208,4 @@ relationships
     executes only if selected, Mc Case
     permits execution of, M Process
     1 Execution Dependency
---
-    R19
-    Process +
-        Standard Process
-        Custom Process
 --

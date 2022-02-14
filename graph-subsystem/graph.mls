@@ -1,53 +1,49 @@
-diagram class
+diagram class // Layout for Graph Subsystem Class Model 0.8.x
 notation Starr
 presentation default
 orientation landscape
 color pink eraser
 sheet D
-padding l400 b250
+padding l400 b300
 frame OS Engineer
 frame_presentation default
 nodes
-    Graph Specification 14,2
-    Graph 14,6-7
-    Graph Port 14,9
-    External Input 15,12
-    External Output 13-14,12
-    Store 12,9
-    Switch 10-11,4-5
-    Case 8-9,3
-    Execution Dependency 7-8,4-5
-    Process Specification/2 7,2
-    Compatible Process 8-9,1
-    Interface 5,2
-    Process 8-9,6-7
-    Standard Process/2 7,6
-    Standard Process Port/2 4,4
-    Custom Process Port/2 5,7
-    Custom Process/2 7,7
-    Content 3,7
-    Port 9,11
-    Process Port 4-5,9
-    Process Input Port 5,12
-    Process Output Port 3-4,12
-    Control Sequence/2 8-9,8
+    Graph Specification 13,2
+    Graph 13,6-7
+    External Interface 13,9
+    External Input 14,11
+    External Output 12-13,11
+    Store 14-15,9
+    Switch 9-10,4-5
+    Case 7-8,3
+    Execution Dependency 6-7,4-5
+    Process Specification/2 8,2
+    Compatible Process 10,1
+    Port Specification 4,2
+    Process 7-8,6-7
+    Standard Port/2 4,5
+    Custom Port/2 2,5
+    Content 2,2
+    Port 3,6-7
+    Input Port 4,8
+    Output Port 2-3,8
+    Control Sequence/2 7-8,8
 connectors
     +R1 : +/2 b|Graph Specification : +/1 t*|Process Specification, r|Compatible Process
-    -R2 : +/2 b|Interface : +/2 l|Content
-    +R3 : -/1 b|Process Specification : -/1 t*|Interface
-    +R4 : -/1 b|Custom Process : -/1 t*|Custom Process Port
-    +R5 : +/2 b|Port : +/1 r|Content
-    +R6 : l|Port { r-1|Graph Port, r+1|Process Port }
-    -R7 : r-1|Process Port { l|Process Input Port, l|Process Output Port }
-    +R8 : r+1|Graph Port { l|External Input, l|External Output }
+    -R2 : +/2 b|Port Specification : +/2 t*|Content
+    +R3 : -/1 b|Process Specification : -/1 t*|Port Specification
+    +R4 : -/1 r|Port Specification : -/1 l*|Standard Port
+    +R5 : +/2 l*|Custom Port : +/1 r|Content
+    +R6 : +/1 b|Content : +/2 b|External Interface : L1
+    -R7 : r-1|Port { l|Input Port, l|Output Port }
+    +R8 : r+1|External Interface { l|External Input, l|External Output }
     -R9 : +/1 r|Graph Specification : +/1 l*|Graph
-    -R10 : +/3 b+1|Graph : +/3 l|Store
-    +R11 : l|Process Port { r|Custom Process Port, r|Standard Process Port }
-    -R12 : +/1 r|Graph : +/1 l*|Graph Port
+    +R10 : +/3 t|Graph : +/3 l|Store
+    -R11 : +/3 b|Process : +/3 t*|Port
+    -R12 : +/1 r|Graph : +/1 l*|External Interface
     +R13 : -/1 b-1|Graph : +/1 t*|Process
     -R14.2 : +/2 r+2|Process : -/2 r-1|Process, l|Control Sequence : L7R+2
-    -R15 : -/1 b|Standard Process : +/1 r|Interface, t|Standard Process Port
+    +R15 : l|Port { r|Custom Port, r|Standard Port }
     -R16.2 : -/2 t-2|Process : +/1 r|Switch
     -R17 : +/1 l|Switch : -/2 t|Case
     +R18 : +/2 r|Case : -/2 l*|Process, t|Execution Dependency
-    +R19 : b|Process { t|Standard Process, t|Custom Process }
