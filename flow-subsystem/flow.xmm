@@ -2,134 +2,124 @@ metadata
     Title : Flow Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.1
-    Version : 0.3.2
+    Version : 0.4.0
     /// Creation date : January 21, 2022
-    Modification date : February 5, 2022
+    Modification date : February 15, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Flow
 class Conditional Input
 attributes
-    Input set {I, R52}
-    Process output port {I, R52}
-    Graph {I, R52}
+    Input set {I, R57}
+    Output port {I, R57}
+    Graph {I, R57}
 --
 class External Input
 attributes
-    Name {I, I2*, R8}
-    Source {I3, R52}
-    Graph {I, I2*, I3, R8, R52}
-    Content {I2*, R8}
+    ID : External Input ID {I, R8, R52}
+    Graph {I, R8, R52}
+--
+class External Input Flow
+attributes
+    Input port {I, R55}
+    Graph {I, R55}
+    External input {R55c}
 --
 class External Output
 attributes
-    Name {I, R8}
+    ID : External Output ID {I, R8}
     Graph {I, R8, R56}
-    Content {R8, R56}
-    Process output {R56}
+    Output port {R56}
 --
-class External Process Input
+class Input Port
 attributes
-    Process input port {I, R55}
-    Process {I, R55}
-    Graph {I, R55}
-    Content {R55}
-    External input {R55}
+    ID : Input Port ID {I, R7}
+    Graph {I, R7, R53}
+    Input source {R53}
 --
-class Process Connection
+class Input Flow
 attributes
-    Input port {I, R54}
-    Input process {I, R54}
-    Output port {I, R54}
-    Output process {I, R54c}
-    Graph {I, R54}
-    Content {R54}
---
-class Process Input Port
-attributes
-    Name {I, I2*, R50, R7}
-    Process {I, I2*, R7}
-    Graph {I, I2*, R50, R53, R7}
-    Content {I2*, R50, R7}
-    Input flow {R53}
---
-class Process Input Source
-attributes
-    ID : Source ID {I}
+    ID : Flow ID {I, UR52}
     Graph {I, UR52}
 --
-class Process Output Port
+class Merged Input
 attributes
-    Name {I, I2*, R50, R7}
-    Process {I, I2*, R7}
-    Source {I3, R52}
-    Graph {I, I2*, I3, R50, R7, R52}
-    Content {I2*, R50, R7}
+    Merge {I, R57}
+    Output port {I, R57}
+    Graph {I, R57}
+--
+class Merged Input Set
+attributes
+    ID : Merged Input Set ID {I, R52}
+    Graph {I, R52}
+--
+class Output Port
+attributes
+    ID : Output Port ID {I, R7}
+    Graph {I, R7}
 --
 class Store <import:Graph>
 attributes
-    Name {I, R52}
-    Graph {I, I2, R52}
-    Source {I2, R52}
+    ID {I, R52}
+    Graph {I, R52}
 --
 class Switched Input Set
 attributes
-    Source {I, R52}
+    ID : Switched Input Set ID {I, R52}
     Graph {I, R52}
 --
 class Read Access
 attributes
-    Port {I, R50}
-    Process {I, R50}
-    Graph {I, R50}
     Store {I, R50}
+    Input port {I, R50}
+    Graph {I, R50}
 --
 class Write Access
 attributes
-    Port {I, R51}
-    Process {I, R51}
-    Graph {I, R51}
     Store {I, R51}
+    Output port {I, R51}
+    Graph {I, R51}
 --
 relationships
     R50
     reads, 1c Store
-    is read by, Mc Process Input Port
+    is read by, Mc Input Port
     1 Read Access
 --
     R51
-    modifies, Mc Process Output Port
+    modifies, Mc Output Port
     is modified by, Mc Store
     1 Write Access
 --
     R52
-    Process Input Source +
+    Input Flow +
         External Input
-        Process Output Port
+        Output Port
         Store
         Switched Input Set
+        Merged Input Set
 --
     R53
-    feeds, Mc Process Input Port
-    must consume, 1 Process Input Source
+    feeds, Mc Input Port
+    must consume, 1 Input Flow
 --
     R54
-    feeds, Mc Process Input Port
-    consumes, 1c Process Output Flow
-    1 Process Connection
+    merges at, Mc Merged Input Set
+    merges, M Output Port
+    1 Merged Input
 --
     R55
-    feeds, Mc Process Input Port
+    feeds, M Input Port
     consumes, 1c External Input
-    1 External Process Input
+    1 External Input Flow
 --
     R56
     feeds, Mc External Output
-    consumes, 1 Process Output Port
+    consumes, 1 Output Port
 --
     R57
-    selects among, M Process Output Port
+    selects among, M Output Port
     is available in, Mc Switched Input Set
     1 Conditional Process Input
 --

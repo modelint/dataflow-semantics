@@ -2,9 +2,9 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.8.0
+    Version : 0.8.1
     /// Creation date : January 8, 2022
-    Modification date : February 14, 2022
+    Modification date : February 15, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -86,14 +86,12 @@ attributes
 --
 class Input Port <import:Flow>
 attributes
-    ID : Input Port ID {R7}
-    Process {I, R7}
+    ID {I, R7}
     Graph {I, R7}
 --
 class Output Port <import:Flow>
 attributes
-    ID : Output Port ID {R7}
-    Process {I, R7}
+    ID {I, R7}
     Graph {I, R7}
 --
 class Port
@@ -121,8 +119,9 @@ attributes
 --
 class Store
 attributes
-    Name : Store Name {I, R52}
-    Graph {I, R10, R52}
+    ID : Store ID {I, R52}
+    Name : Store Name {I2}
+    Graph {I, I2, R10, R52}
 --
 class Switch
 attributes

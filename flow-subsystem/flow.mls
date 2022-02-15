@@ -8,25 +8,27 @@ padding l200 b300
 frame OS Engineer
 frame_presentation default
 nodes
-    Process Input Port/2 4,2
-    Process Input Source/2 4,6
-    External Input 6,6
-    Process Port 2-3,9
-    Store 7,8
-    Read Access 8,4
-    Write Access 4,9
-    External Process Input/2 5,4
-    External Output 3,10-11
-    Process Output Port/2 3,8
-    Process Connection/2 2,5
-    Switched Input Set 1,8
-    Conditional Input 2,9 >right
+    Input Port/2 6,2
+    Input Flow/2 6,6
+    External Input 8,6
+    Process Port 4-5,9
+    Store 9,8
+    Read Access 10,4
+    Write Access 7,9
+    External Input Flow/2 7,4
+    External Output 7,10-11
+    Output Port/2 5-6,8
+//    Process Connection/2 2,5
+    Switched Input Set 3,8
+    Merged Input Set 1,8
+    Merged Input 2,11
+    Conditional Input 4,9 >right
 connectors
-    +R50 : -/1 t-1|Process Input Port : +/1 l+1|Store, b|Read Access
-    -R51 : +/1 t*|Process Output Port : +/1 b|Store, l|Write Access
-    +R52 : r|Process Input Source { r|External Input, l-1|Store, l+1|Process Output Port, l|Switched Input Set }
-    -R53 : +/1 r|Process Input Port : +/1 l*|Process Input Source
-    +R54.2 : -/1 b|Process Input Port : -/1 l-1|Process Output Port, t|Process Connection
-    +R55.2 : +/1 t+1|Process Input Port : +/1 l|External Input, t|External Process Input
-    -R56 : +/1 r|Process Output Port : +/1 l*|External Output
-    -R57 : +/1 b|Process Output Port : +/1 t*|Switched Input Set, l|Conditional Input
+    +R50 : -/1 t-1|Input Port : +/1 l+1|Store, b|Read Access
+    -R51 : +/1 t*|Output Port : +/1 b|Store, l|Write Access
+    +R52 : r|Input Flow { r|External Input, l-1|Store, l+1|Output Port, l|Switched Input Set, l|Merged Input Set }
+    -R53 : +/1 r|Input Port : +/1 l*|Input Flow
+    +R54.2 : -/1 r|Merged Input Set : +/1 r-2|Output Port, l|Merged Input : L10
+    +R55.2 : +/1 t+1|Input Port : +/1 l|External Input, t|External Input Flow
+    +R56.2 : +/1 r+1|Output Port : +/1 b|External Output
+    -R57 : +/2 b|Output Port : +/1 t*|Switched Input Set, l|Conditional Input
