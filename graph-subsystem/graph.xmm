@@ -2,7 +2,7 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.8.4
+    Version : 0.9.0
     /// Creation date : January 8, 2022
     Modification date : February 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -56,6 +56,13 @@ attributes
     ID : External Input ID {I, R8}
     Graph {I, R8}
 --
+class External Interface
+attributes
+    ID {I, UR8}
+    Name : Interface Name {I2}
+    Graph {I, I2, R12}
+    Content {R6}
+--
 class External Output <import:Flow>
 attributes
     ID : Internal Input ID {I, R8}
@@ -70,12 +77,15 @@ class Graph Specification
 attributes
     Name {I}
 --
-class External Interface
+class Input Port <import:Flow>
 attributes
-    ID {I, UR8}
-    Name : Interface Name {I2}
-    Graph {I, I2, R12}
-    Content {R6}
+    ID {I, R7}
+    Graph {I, R7}
+--
+class Output Port <import:Flow>
+attributes
+    ID {I, R7}
+    Graph {I, R7}
 --
 class Port Specification
 attributes
@@ -88,16 +98,12 @@ class Process
 attributes
     Name : Process Name {I}
     Graph {I, R13}
+    Group {R21, R13}
 --
-class Input Port <import:Flow>
+class Process Group
 attributes
-    ID {I, R7}
-    Graph {I, R7}
---
-class Output Port <import:Flow>
-attributes
-    ID {I, R7}
-    Graph {I, R7}
+    ID : Process Group Name {I}
+    Graph {I, R20}
 --
 class Port
 attributes
@@ -212,4 +218,12 @@ relationships
     is accepted by, Mc Content
     accepts, Mc Content
     1 Compatible Content
+--
+    R20
+    is organized into, M Process Group
+    organizes, 1 Graph
+--
+    R21
+    is a member of, 1 Process Group
+    has member, M Process
 --

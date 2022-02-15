@@ -4,15 +4,15 @@ presentation default
 orientation landscape
 color pink eraser
 sheet D
-padding l400 b300
+padding l400 b220
 frame OS Engineer
 frame_presentation default
 nodes
     Graph Specification 13,3
     Graph 13,7-8
-    External Interface 13,10
-    External Input 14,12
-    External Output 12-13,12
+    External Interface 13,11
+    External Input 14,13
+    External Output 12-13,13
     Store 14-15,10
     Switch 9-10,5-6
     Case 7-8,4
@@ -27,25 +27,28 @@ nodes
     Port 3,7-8
     Input Port 4,9
     Output Port 2-3,9
-    Control Sequence/2 7-8,9
+    Control Sequence/2 6-7,9
     Compatible Content/2 2-3,1-2
+    Process Group/2 11,9
 connectors
     +R1 : +/2 b|Graph Specification : +/1 t*|Process Specification, r|Compatible Process
     -R2 : +/2 b|Port Specification : +/2 t*|Content
     +R3 : -/1 b|Process Specification : -/1 t*|Port Specification
     +R4 : -/1 r|Port Specification : -/1 l*|Standard Port
     +R5 : +/2 l*|Custom Port : +/1 r|Content
-    +R6 : +/1 b|Content : +/2 b|External Interface : L1
+    +R6 : +/1 b|Content : +/2 b|External Interface : L1R+2
     -R7 : r-1|Port { l|Input Port, l|Output Port }
     +R8 : r+1|External Interface { l|External Input, l|External Output }
     -R9 : +/1 r|Graph Specification : +/1 l*|Graph
     +R10 : +/3 t|Graph : +/3 l|Store
-    -R11 : +/3 b|Process : +/3 t*|Port
+    -R11 : -/3 b|Process : +/3 t*|Port
     -R12 : +/1 r|Graph : +/1 l*|External Interface
     +R13 : -/1 b-1|Graph : +/1 t*|Process
-    -R14.2 : +/2 r+2|Process : -/2 r-1|Process, l|Control Sequence : L8R+2
+    +R14.3 : +/3 b+2|Process : +/2 r-2|Process, l|Control Sequence : L6R+2 L8R+2
     +R15 : l|Port { r|Custom Port, r|Standard Port }
     -R16.2 : -/2 t-2|Process : +/1 r|Switch
     -R17 : +/1 l|Switch : -/2 t|Case
     +R18 : +/2 r|Case : -/2 l*|Process, t|Execution Dependency
     -R19.2 : -/1 l|Content : -/1 t-2|Content, r|Compatible Content : L2R+2 L3R-2
+    +R20 : -/1 r-2|Graph : +/1 t|Process Group
+    +R21 : +/1 b|Process Group : +/1 r+2|Process
