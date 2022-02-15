@@ -48,4 +48,4 @@ connectors
     -R16.2 : -/2 t-2|Process : +/1 r|Switch
     -R17 : +/1 l|Switch : -/2 t|Case
     +R18 : +/2 r|Case : -/2 l*|Process, t|Execution Dependency
-    -R19.2 : -/2 l|Content : -/2 t-2|Content, r|Compatible Content : L2R+2 L3R-2
+    -R19.2 : -/1 l|Content : -/1 t-2|Content, r|Compatible Content : L2R+2 L3R-2

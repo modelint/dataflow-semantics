@@ -2,7 +2,7 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.8.3
+    Version : 0.8.4
     /// Creation date : January 8, 2022
     Modification date : February 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -27,8 +27,8 @@ attributes
 --
 class Compatible Content
 attributes
-    Flow outof {I, R19}
-    Flow into {I, R19}
+    Flow {I, R19}
+    Accepts {I, R19}
 --
 class Control Sequence
 attributes
@@ -209,7 +209,7 @@ relationships
     1 Execution Dependency
 --
     R19
-    can flow into, Mc Content
-    can flow out of, Mc Content
+    is accepted by, Mc Content
+    accepts, Mc Content
     1 Compatible Content
 --
