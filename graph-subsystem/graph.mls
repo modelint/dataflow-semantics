@@ -8,26 +8,27 @@ padding l400 b300
 frame OS Engineer
 frame_presentation default
 nodes
-    Graph Specification 13,2
-    Graph 13,6-7
-    External Interface 13,9
-    External Input 14,11
-    External Output 12-13,11
-    Store 14-15,9
-    Switch 9-10,4-5
-    Case 7-8,3
-    Execution Dependency 6-7,4-5
-    Process Specification/2 8,2
-    Compatible Process 10,1
-    Port Specification 4,2
-    Process 7-8,6-7
-    Standard Port/2 4,5
-    Custom Port/2 2,5
-    Content 2,2
-    Port 3,6-7
-    Input Port 4,8
-    Output Port 2-3,8
-    Control Sequence/2 7-8,8
+    Graph Specification 13,3
+    Graph 13,7-8
+    External Interface 13,10
+    External Input 14,12
+    External Output 12-13,12
+    Store 14-15,10
+    Switch 9-10,5-6
+    Case 7-8,4
+    Execution Dependency 6-7,5-6
+    Process Specification/2 8,3
+    Compatible Process/2 10,2
+    Port Specification 4,3
+    Process 7-8,7-8
+    Standard Port/2 4,6
+    Custom Port/2 2,6
+    Content 2,3
+    Port 3,7-8
+    Input Port 4,9
+    Output Port 2-3,9
+    Control Sequence/2 7-8,9
+    Compatible Content/2 2-3,1-2
 connectors
     +R1 : +/2 b|Graph Specification : +/1 t*|Process Specification, r|Compatible Process
     -R2 : +/2 b|Port Specification : +/2 t*|Content
@@ -42,8 +43,9 @@ connectors
     -R11 : +/3 b|Process : +/3 t*|Port
     -R12 : +/1 r|Graph : +/1 l*|External Interface
     +R13 : -/1 b-1|Graph : +/1 t*|Process
-    -R14.2 : +/2 r+2|Process : -/2 r-1|Process, l|Control Sequence : L7R+2
+    -R14.2 : +/2 r+2|Process : -/2 r-1|Process, l|Control Sequence : L8R+2
     +R15 : l|Port { r|Custom Port, r|Standard Port }
     -R16.2 : -/2 t-2|Process : +/1 r|Switch
     -R17 : +/1 l|Switch : -/2 t|Case
     +R18 : +/2 r|Case : -/2 l*|Process, t|Execution Dependency
+    -R19.2 : -/2 l|Content : -/2 t-2|Content, r|Compatible Content : L2R+2 L3R-2

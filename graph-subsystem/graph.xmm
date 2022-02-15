@@ -2,9 +2,9 @@ metadata
     Title : Graph Subsystem Class Model
     Author : Leon Starr
     Document ID : mint.dataflow.td.2
-    Version : 0.8.1
+    Version : 0.8.3
     /// Creation date : January 8, 2022
-    Modification date : February 15, 2022
+    Modification date : February 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -24,6 +24,11 @@ attributes
 class Content
 attributes
     Name : Content Name {I}
+--
+class Compatible Content
+attributes
+    Flow outof {I, R19}
+    Flow into {I, R19}
 --
 class Control Sequence
 attributes
@@ -105,11 +110,6 @@ class Process Specification
 attributes
     Name : Spec Name {I}
 --
-///class Standard Process
-///attributes
-///    Name {I, R19}
-///    Graph {I, R19}
-///--
 class Standard Port
 attributes
     Port {I, R15}
@@ -207,4 +207,9 @@ relationships
     executes only if selected, Mc Case
     permits execution of, M Process
     1 Execution Dependency
+--
+    R19
+    can flow into, Mc Content
+    can flow out of, Mc Content
+    1 Compatible Content
 --

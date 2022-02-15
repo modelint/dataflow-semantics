@@ -18,7 +18,6 @@ nodes
     External Input Flow/2 7,4
     External Output 7,10-11
     Output Port/2 5-6,8
-//    Process Connection/2 2,5
     Switched Input Set 3,8
     Merged Input Set 1,8
     Merged Input 2,11
